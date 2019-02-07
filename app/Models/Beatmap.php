@@ -41,6 +41,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float $diff_size
  * @property \Illuminate\Database\Eloquent\Collection $difficulty BeatmapDifficulty
  * @property \Illuminate\Database\Eloquent\Collection $difficultyAttribs BeatmapDifficultyAttrib
+ * @property string|null $difficulty_rating_custom
  * @property float $difficultyrating
  * @property \Illuminate\Database\Eloquent\Collection $failtimes BeatmapFailtimes
  * @property string|null $filename
@@ -71,6 +72,15 @@ class Beatmap extends Model
     public $timestamps = false;
 
     protected $hidden = ['checksum', 'filename', 'orphaned'];
+
+    const DIFFICULTY_RATINGS = [
+        'easy' => 0,
+        'normal' => 1,
+        'hard' => 2,
+        'insane' => 3,
+        'expert' => 4,
+        'expert_plus' => 5,
+    ];
 
     const MODES = [
         'osu' => 0,
@@ -117,6 +127,16 @@ class Beatmap extends Model
     public function getModeAttribute()
     {
         return static::modeStr($this->playmode);
+    }
+
+    public function getDifficultyRatingCustomAttribute($value)
+    {
+        return array_search_null(get_int($value), static::DIFFICULTY_RATINGS);
+    }
+
+    public function setDifficultyRatingCustomAttribute($value)
+    {
+        $this->attributes['difficulty_rating_custom'] = static::DIFFICULTY_RATINGS[$value] ?? null;
     }
 
     public function getDiffSizeAttribute($value)
@@ -210,5 +230,12 @@ class Beatmap extends Model
     public function status()
     {
         return array_search($this->approved, Beatmapset::STATES, true);
+    }
+
+    public function updateCustomDifficultyRating($rating)
+    {
+        if ($rating === null || array_key_exists($rating, static::DIFFICULTY_RATINGS)) {
+            $this->update(['difficulty_rating_custom' => $rating]);
+        }
     }
 }

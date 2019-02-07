@@ -67,6 +67,20 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
+    public function checkBeatmapModifyCustomDifficultyRating($user, $beatmap)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($user->isQAT()) {
+            return 'ok';
+        }
+
+        if ($user->user_id === $beatmap->user_id && !$beatmap->beatmapset->isScoreable()) {
+            return 'ok';
+        }
+    }
+
     public function checkBeatmapShow($user, $beatmap)
     {
         if (!$beatmap->trashed()) {

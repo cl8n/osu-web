@@ -84,4 +84,15 @@ class BeatmapsController extends Controller
 
         return $results;
     }
+
+    public function updateCustomDifficultyRating($id)
+    {
+        $beatmap = Beatmap::findOrFail($id);
+
+        priv_check('BeatmapModifyCustomDifficultyRating')->ensureCan();
+
+        $beatmap->updateCustomDifficultyRating(Request::input('rating'));
+
+        return response([], 204);
+    }
 }
