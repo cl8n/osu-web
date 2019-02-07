@@ -55,6 +55,7 @@ Route::group(['prefix' => 'beatmaps'], function () {
     Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
 });
 Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
+Route::put('beatmaps/{beatmap}/update-custom-difficulty', 'BeatmapsController@updateCustomDifficultyRating')->name('beatmaps.custom-difficulty');
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'beatmapsets'], function () {
