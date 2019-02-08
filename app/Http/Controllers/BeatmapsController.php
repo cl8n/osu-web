@@ -89,7 +89,7 @@ class BeatmapsController extends Controller
     {
         $beatmap = Beatmap::findOrFail($id);
 
-        priv_check('BeatmapModifyCustomDifficultyRating')->ensureCan();
+        priv_check('BeatmapModifyCustomDifficultyRating', $beatmap)->ensureCan();
 
         $beatmap->updateCustomDifficultyRating(Request::input('rating'));
 

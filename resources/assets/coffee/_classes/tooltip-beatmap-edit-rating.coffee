@@ -20,23 +20,23 @@
 el = React.createElement
 
 class @TooltipBeatmapEditRating
-  icon: (id, mode, rating, active) ->
-    className = 'tooltip-beatmap-edit-rating__option'
-    className += ' tooltip-beatmap-edit-rating__option--active' if active
+  iconTemplate: _.template '''
+    <a href="<%- route %>" data-method="PUT" data-remote="1">
+      <div class="<%- iconClass %>">
+        <div class="beatmap-icon__shadow"></div>
+        <i class="fal fa-extra-mode-<%- mode %>"></i>
+      </div>
+    </a>
+  '''
 
-    a
-      className: className
-      href: laroute.route 'beatmaps.custom-difficulty',
-        beatmap: id
-        rating: rating if active
-      'data-method': 'PUT'
-      'data-remote': true
-      'nice'
-#      el BeatmapIcon,
-#        beatmap:
-#          convert: false
-#          mode: mode
-#        overrideVersion: rating
+  icon: (id, mode, rating, active) ->
+    iconClass = "beatmap-icon beatmap-icon--with-hover beatmap-icon--#{rating}"
+    iconClass += ' beatmap-icon--inactive' unless active
+    route = laroute.route 'beatmaps.custom-difficulty',
+      beatmap: id
+      rating: rating unless active
+
+    @iconTemplate {iconClass, route, mode}
 
   content: (beatmap) ->
     content = ''
@@ -44,7 +44,7 @@ class @TooltipBeatmapEditRating
     for rating in ['easy', 'normal', 'hard', 'insane', 'expert', 'expert-plus']
       content += @icon beatmap.id, beatmap.mode, rating, beatmap.customRating == rating
 
-    content
+    "<div class=\"tooltip-beatmap__picker\">#{content}</div>"
 
   constructor: ->
     $(document).on 'mouseover touchstart', '.js-beatmap-tooltip-edit-rating', @onMouseOver
@@ -78,8 +78,9 @@ class @TooltipBeatmapEditRating
         ready: true
       hide:
         event: 'click mouseleave'
+        fixed: true
       style:
-        classes: 'qtip tooltip-beatmap-edit-rating'
+        classes: 'qtip tooltip-beatmap'
         tip:
           width: 10
           height: 9
