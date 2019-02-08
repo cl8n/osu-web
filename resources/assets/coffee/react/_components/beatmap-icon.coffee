@@ -22,17 +22,31 @@ el = React.createElement
 @BeatmapIcon = (props) ->
   beatmap = props.beatmap
 
-  difficultyRating = props.overrideVersion ? BeatmapHelper.getDiffRating(beatmap.difficulty_rating)
+  # debug
+  showNew = true
+
+  difficultyRating = props.overrideVersion ? (beatmap.difficulty_rating_custom unless beatmap.convert)
+  difficultyRating ?= BeatmapHelper.getDiffRating(beatmap.difficulty_rating)
   showTooltip = (props.showTitle ? true) && !props.overrideVersion?
   mode = if beatmap.convert then 'osu' else beatmap.mode
 
   className = "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{props.modifier}"
   className += " beatmap-icon--with-hover js-beatmap-tooltip" if showTooltip
+  className += " beatmap-icon--with-hover js-beatmap-tooltip-edit-rating" if showNew
 
-  div
-    className: className
-    'data-beatmap-title': beatmap.version if showTooltip
-    'data-stars': _.round beatmap.difficulty_rating, 2
-    'data-difficulty': difficultyRating
-    div className: 'beatmap-icon__shadow'
-    i className: "fal fa-extra-mode-#{mode}"
+  if showNew
+    div
+      className: className
+      'data-id': beatmap.id
+      'data-mode': mode
+      'data-custom-rating': beatmap.difficulty_rating_custom
+      div className: 'beatmap-icon__shadow'
+      i className: "fal fa-extra-mode-#{mode}"
+  else
+    div
+      className: className
+      'data-beatmap-title': beatmap.version if showTooltip
+      'data-stars': _.round beatmap.difficulty_rating, 2 if showTooltip
+      'data-difficulty': difficultyRating
+      div className: 'beatmap-icon__shadow'
+      i className: "fal fa-extra-mode-#{mode}"

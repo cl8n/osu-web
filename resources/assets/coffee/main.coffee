@@ -76,6 +76,7 @@ $(document).on 'turbolinks:load', ->
 @stickyFooter ?= new StickyFooter
 @timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
+@tooltipBeatmapEditRating ?= new TooltipBeatmapEditRating
 @tooltipDefault ?= new TooltipDefault
 @turbolinksReload ?= new TurbolinksReload
 @userCard ?= new UserCard
