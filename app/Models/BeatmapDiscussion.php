@@ -410,7 +410,7 @@ class BeatmapDiscussion extends Model
         if ($this->beatmapset_id === null) {
             $this->validationErrors()->add('beatmapset_id', 'required');
         } elseif ($this->beatmapset === null) {
-            $this->validationErrors()->add('beatmap_id', '.invalid_beatmapset_id');
+            $this->validationErrors()->add('beatmapset_id', '.invalid_beatmapset_id');
         }
     }
 

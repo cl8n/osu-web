@@ -33,6 +33,12 @@ return [
         ],
     ],
 
+    'beatmap_pack_item' => [
+        'invalid_beatmapset' => 'Invalid beatmapset specified.',
+        'invalid_pack' => 'Invalid beatmap pack specified.',
+        'wrong_playmode' => "The beatmapset doesn't contain the playmode of the beatmap pack",
+    ],
+
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Timestamp is specified but beatmap is missing.',
         'beatmapset_no_hype' => "Beatmap can't be hyped.",

@@ -25,12 +25,15 @@ class @BeatmapPack
     @packId = rootElement.dataset.packId
     @packBody = @el.querySelector('.js-accordion__item-body')
     @expander = @el.querySelector('.js-accordion__item-header')
+    @editLink = @el.querySelector('.js-beatmap-pack-edit')
     @busy = false
     @isCurrent = @el.classList.contains('js-accordion__item--expanded')
 
     $('.js-accordion').on 'beatmappack:clicked', @onClick
     $(@expander).on 'click', (event) =>
       $(@el).trigger 'beatmappack:clicked', @packId
+    $(@editLink).on 'click', (event) =>
+      event.stopPropagation()
 
   onClick: (e, id) =>
     e.stopPropagation()

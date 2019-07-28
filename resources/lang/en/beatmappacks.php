@@ -34,6 +34,7 @@ return [
                 'scary' => 'download the packs from latest to earliest',
             ],
         ],
+        'create' => 'Create a new beatmap pack',
         'title' => 'Beatmap Packs',
         'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
     ],

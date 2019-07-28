@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use App\Traits\Validatable;
+
 /**
  * @property Beatmapset $beatmapset
  * @property int $beatmapset_id
@@ -29,6 +31,8 @@ namespace App\Models;
  */
 class BeatmapPackItem extends Model
 {
+    use Validatable;
+
     protected $table = 'osu_beatmappacks_items';
     protected $primaryKey = 'item_id';
     public $timestamps = false;
@@ -41,5 +45,40 @@ class BeatmapPackItem extends Model
     public function beatmapset()
     {
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
+    }
+
+    public function isValid() : bool
+    {
+        $this->validationErrors()->reset();
+
+        if ($this->beatmapset === null) {
+            $this->validationErrors()->add('beatmapset_id', '.invalid_beatmapset');
+        }
+
+        if ($this->pack === null) {
+            $this->validationErrors()->add('pack_id', '.invalid_pack');
+        }
+
+        if ($this->validationErrors()->isEmpty()
+            && $this->pack->playmode !== null
+            && !$this->beatmapset->playmodes()->contains($this->pack->playmode)) {
+            $this->validationErrors()->add('beatmapset_id', '.wrong_playmode');
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function validationErrorsTranslationPrefix() : string
+    {
+        return 'beatmap_pack_item';
+    }
+
+    public function save(array $options = []) : bool
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        return parent::save($options);
     }
 }

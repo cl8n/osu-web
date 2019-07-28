@@ -52,8 +52,11 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
 Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
     Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
-    Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+    Route::resource('packs', 'BeatmapPacksController', ['except' => ['destroy']]);
     Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
+    Route::post('packs/{pack}/items', 'BeatmapPacksController@storeItem')->name('packs.items.store');
+    Route::delete('packs/{pack}/items/{item}', 'BeatmapPacksController@destroyItem')->name('packs.items.destroy');
+    Route::post('packs/{pack}/achievements', 'BeatmapPacksController@storeAchievement')->name('packs.achievements.store');
 });
 Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);

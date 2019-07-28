@@ -467,6 +467,22 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkBeatmapPackManage(?User $user) : string
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isPacksManager()) {
+            return 'unauthorized';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
      * @param Beatmapset $beatmapset
      * @return string
      * @throws AuthorizationException

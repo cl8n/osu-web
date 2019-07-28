@@ -738,6 +738,11 @@ class User extends Model implements AuthenticatableContract
         return $this->isGroup(UserGroup::GROUPS['loved']);
     }
 
+    public function isPacksManager() : bool
+    {
+        return $this->isGroup(UserGroup::GROUPS['packs']);
+    }
+
     public function isBot()
     {
         return $this->group_id === UserGroup::GROUPS['bot'];
