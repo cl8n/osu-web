@@ -82,6 +82,9 @@ return [
         'friends_controller' => [
             'index' => 'dashboard',
         ],
+        'group_history_controller' => [
+            'index' => 'group history',
+        ],
         'groups_controller' => [
             'show' => 'groups',
         ],

@@ -182,6 +182,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('chat', 'ChatController', ['only' => ['index']]);
     });
 
+    Route::resource('groups/history', 'GroupHistoryController', ['only' => ['index']]);
     Route::resource('groups', 'GroupsController', ['only' => ['show']]);
 
     Route::group(['prefix' => 'home'], function () {

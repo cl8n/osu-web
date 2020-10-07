@@ -143,6 +143,7 @@ const tsReactComponents = [
   'follows-comment',
   'follows-mapping',
   'friends-index',
+  'groups-history',
   'groups-show',
   'news-index',
   'news-show',

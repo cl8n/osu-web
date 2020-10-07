@@ -93,4 +93,9 @@ class UserGroupEvent extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeVisible($query)
+    {
+        $query->where('hidden', false);
+    }
 }
