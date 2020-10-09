@@ -38,11 +38,23 @@ describe('BeatmapsetSearchFilters', () => {
       expect(subject.query).toBe('whee 12 ああ');
     });
 
+    it('should collapse whitespace', () => {
+      subject.query = 'whee 12   ああ';
+
+      expect(subject.query).toBe('whee 12 ああ');
+    });
+
     it('should treat empty string as null', () => {
       subject.query = '';
 
       // type inference was a bit _too_ smart.
       expect(subject.query as string | null).toBe(null);
+    });
+
+    it('should remove valid operations', () => {
+      subject.query = 'whee 12 AR=9 ああ invalid=5 bpm=220 cs=NaN';
+
+      expect(subject.query).toBe('whee 12 ああ invalid=5 cs=NaN');
     });
   });
 

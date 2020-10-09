@@ -5,7 +5,7 @@ import { BeatmapsetSearch, SearchResponse } from 'beatmaps/beatmapset-search';
 import ResultSet from 'beatmaps/result-set';
 import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-search-filters';
 import { route } from 'laroute';
-import { debounce, intersection, map } from 'lodash';
+import { debounce, map } from 'lodash';
 import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
 
 export interface SearchStatus {
@@ -174,6 +174,6 @@ export class BeatmapsetSearchController {
     this.filters = new BeatmapsetSearchFilters(location.href);
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
-    this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;
+    this.isExpanded = BeatmapsetFilter.expanded(filtersFromUrl);
   }
 }

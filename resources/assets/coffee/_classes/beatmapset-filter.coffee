@@ -1,6 +1,24 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+parseDuration = (string) ->
+  float = parseFiniteFloat string
+
+  return null unless float?
+
+  switch string.slice -1
+    when 'ms' then float * 0.001
+    when 'm' then float * 60
+    when 'h' then float * 3600
+    else float
+
+
+parseFiniteFloat = (string) ->
+  float = parseFloat string
+
+  if _.isFinite(float) then float else null
+
+
 parseInt10 = (string) ->
   int = parseInt string, 10
 
@@ -12,39 +30,15 @@ class @BeatmapsetFilter
     mode: parseInt10
     genre: parseInt10
     language: parseInt10
-
-
-  @charToKey:
-    c: 'general'
-    m: 'mode'
-    s: 'status'
-    g: 'genre'
-    l: 'language'
-    e: 'extra'
-    r: 'rank'
-    played: 'played'
-    q: 'query'
-    sort: 'sort'
-
-
-  @filtersFromUrl: (url) ->
-    params = new URL(url).searchParams
-
-    filters = {}
-
-    for own char, key of @charToKey
-      value = params.get(char)
-
-      continue if !value? || value.length == 0
-
-      value = @castFromString[key](value) if @castFromString[key]
-      filters[key] = value
-
-    filters
-
-
-  @keyToChar: ->
-    @_keyToChar ?= _.invert @charToKey
+    ar: parseFiniteFloat
+    bpm: parseFiniteFloat
+    cs: parseFiniteFloat
+    drain: parseDuration
+    hp: parseFiniteFloat
+    keys: parseInt10
+    length: parseDuration
+    od: parseFiniteFloat
+    stars: parseFiniteFloat
 
 
   @defaults:
@@ -59,12 +53,90 @@ class @BeatmapsetFilter
     status: 'leaderboard'
 
 
-  @expand: ['genre', 'language', 'extra', 'rank', 'played']
+  # filter => query
+  @keyToChar:
+    extra: 'e'
+    general: 'c'
+    genre: 'g'
+    language: 'l'
+    mode: 'm'
+    played: 'played'
+    query: 'q'
+    rank: 'r'
+    sort: 'sort'
+    status: 's'
+
+
+  @operationFields: [
+    'ar'
+    'bpm'
+    'cs'
+    'drain'
+    'hp'
+    'keys'
+    'length'
+    'od'
+    'stars'
+  ]
+
+
+  # query => filter
+  @operators:
+    eq: ['=', '==', ':']
+    ne: ['!=', '!:']
+    lt: ['<']
+    le: ['<=', '<:']
+    gt: ['>']
+    ge: ['>=', '>:']
+
+
+  @filtersFromUrl: (url) ->
+    filters = {}
+    params = new URL(url).searchParams
+    getFilter = (key, char) ->
+      value = params.get char
+
+      return null if !value? || value.length == 0
+
+      @castFromString[key]?(value) ? value
+
+    for own key, char of @keyToChar
+      value = getFilter key, char
+
+      filters[key] = value if value?
+
+    for field in @operationFields
+      value = getFilter field, field
+
+      if value?
+        filters[key] =
+          operator: @operators[params.get "#{field}_op"]?[0] ? '='
+          value: value
+
+
+  @queryParamsFromFilters: (filters) ->
+    queryParams = {}
+
+    for own key, value of filters
+      continue unless value?
+
+      if _.isPlainObject value
+        # assume it's an operator, it came from ts...
+        { operator, value } = value
+
+        queryParams[key] = value
+        queryParams["#{key}_op"] =
+          _.findKey @operators, (filterOperators) -> filterOperators.includes operator
+      else if @keyToChar[key]? && @getDefault(filters, key) != value
+        queryParams[@keyToChar[key]] = value
+
+    queryParams
+
 
   @fillDefaults: (filters) =>
     ret = {}
 
-    for key in @keys
+    for own key of @keyToChar
       ret[key] = filters[key] ? @getDefault(filters, key)
 
     ret
@@ -86,33 +158,14 @@ class @BeatmapsetFilter
   @getDefaults: (filters) =>
     ret = {}
 
-    for key in @keys
+    for own key of @keyToChar
       ret[key] = @getDefault(filters, key)
 
     ret
 
 
-  @keys: [
-    'general'
-    'extra'
-    'genre'
-    'language'
-    'mode'
-    'played'
-    'query'
-    'rank'
-    'sort'
-    'status'
-  ]
-
-  @queryParamsFromFilters: (filters) ->
-    charParams = {}
-
-    for own key, value of filters
-      if value? && @getDefault(filters, key) != value
-        charParams[@keyToChar()[key]] = value
-
-    charParams
+  @expanded: (filters) ->
+    !_.isEmpty _.intersection Object.keys(filters), ['genre', 'language', 'extra', 'rank', 'played']
 
 
   # For UI purposes; server-side has its own check.

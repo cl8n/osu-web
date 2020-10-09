@@ -4,6 +4,12 @@
 import { action, computed, intercept, observable } from 'mobx';
 
 type filterValueType = string | null;
+type filterOperationType = filterOperation | null;
+
+interface filterOperation {
+  operator: '=' | '==' | ':' | '!=' | '!:' | '<' | '<=' | '<:' | '>' | '>=' | '>:';
+  value: number;
+}
 
 export interface BeatmapsetSearchParams {
   extra: filterValueType;
@@ -17,7 +23,17 @@ export interface BeatmapsetSearchParams {
   sort: filterValueType;
   status: filterValueType;
 
-  [key: string]: any;
+  ar: filterOperationType;
+  bpm: filterOperationType;
+  cs: filterOperationType;
+  drain: filterOperationType;
+  hp: filterOperationType;
+  keys: filterOperationType;
+  length: filterOperationType;
+  od: filterOperationType;
+  stars: filterOperationType;
+
+  //[key: string]: any;
 }
 
 export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
@@ -32,13 +48,22 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable sort: filterValueType = null;
   @observable status: filterValueType = null;
 
-  [key: string]: any;
+  @observable ar: filterOperationType = null;
+  @observable bpm: filterOperationType = null;
+  @observable cs: filterOperationType = null;
+  @observable drain: filterOperationType = null;
+  @observable hp: filterOperationType = null;
+  @observable keys: filterOperationType = null;
+  @observable length: filterOperationType = null;
+  @observable od: filterOperationType = null;
+  @observable stars: filterOperationType = null;
+
+  //[key: string]: any;
 
   constructor(url: string) {
-    const filters = BeatmapsetFilter.filtersFromUrl(url);
-    for (const key of Object.keys(filters)) {
-      this[key] = filters[key];
-    }
+    const filters = BeatmapsetFilter.filtersFromUrl(url) as Partial<BeatmapsetSearchParams>;
+
+    Object.assign(this, filters);
 
     intercept(this, 'query', (change) => {
       change.newValue = osu.presence((change.newValue as filterValueType)?.trim());
@@ -59,10 +84,10 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     return BeatmapsetFilter.queryParamsFromFilters(values);
   }
 
-  selectedValue(key: string) {
+  selectedValue(key: keyof BeatmapsetSearchFilters): filterValueType {
     const value = this[key];
     if (value == null) {
-      return BeatmapsetFilter.getDefault(this.values, key);
+      return BeatmapsetFilter.getDefault(this.values, key) as filterValueType;
     }
 
     return value;
@@ -87,9 +112,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
       this.sort = null;
     }
 
-    for (const key of Object.keys(newFilters)) {
-      this[key] = newFilters[key];
-    }
+    Object.assign(this, newFilters);
   }
 
   /**
