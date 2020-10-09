@@ -1,6 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+.fakeInputPadding(@padding, @iconWidth) {
+  @widthOffset: 2 * @padding + @iconWidth + 20px;
+
+  left: @padding;
+  top: @padding;
+  width: calc(100% - @widthOffset);
+}
+
 .beatmapsets-search {
   @_icon-width: @font-size--large + 5px;
   @_icon-width--sticky: @font-size--normal-2 + 5px;
@@ -77,12 +85,17 @@
   }
 
   &__input {
+    background-color: @osu-colour-b2;
     border: 1px solid @osu-colour-b4;
-    width: 100%;
+    caret-color: @osu-colour-c1;
+    color: transparent;
     padding: 10px;
     padding-right: 10px + @_icon-width + 20px;
-    background-color: @osu-colour-b2;
-    color: @osu-colour-c1;
+    width: 100%;
+
+    &::selection {
+      color: transparent;
+    }
 
     &:focus {
       outline: none;
@@ -111,6 +124,34 @@
     .@{_top}--sticky & {
       font-size: @font-size--normal-2;
       margin: 5px 0;
+    }
+  }
+
+  &__input-fake {
+    .fakeInputPadding(10px + 1px, @_icon-width);
+
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    color: @osu-colour-c1;
+    overflow-x: hidden;
+    pointer-events: none;
+    position: absolute;
+    user-select: none;
+    white-space: pre;
+
+    .@{_top}--sticky & {
+      .fakeInputPadding(5px + 1px, @_icon-width--sticky);
+    }
+  }
+
+  &__operation {
+    &--operator {
+      color: @osu-colour-l4;
+    }
+
+    &--value {
+      color: @osu-colour-l3;
     }
   }
 }

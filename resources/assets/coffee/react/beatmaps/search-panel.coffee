@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { SearchFilter } from './search-filter'
+import { SearchInput, SearchInputGuest } from 'beatmaps/search-input'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -84,18 +85,9 @@ export class SearchPanel extends React.Component
 
     div
       className: 'beatmapsets-search beatmapsets-search--sticky'
-      div
-        className: 'beatmapsets-search__input-container'
-        input
-          className: 'beatmapsets-search__input js-beatmapsets-search-input'
-          ref: @pinnedInputRef
-          type: 'textbox'
-          name: 'search'
-          onChange: @onChange
-          placeholder: osu.trans('beatmaps.listing.search.prompt')
-          defaultValue: controller.filters.query
-        div className: 'beatmapsets-search__icon',
-          i className: 'fas fa-search'
+      el SearchInput,
+        onChange: @onChange
+        ref: @pinnedInputRef
 
       div
         className: 'beatmapsets-search__filters'
@@ -140,14 +132,7 @@ export class SearchPanel extends React.Component
         className: 'beatmapsets-search__background beatmapsets-search__background--guest'
         style:
           backgroundImage: osu.urlPresence(@props.background)
-      div className: 'beatmapsets-search__input-container js-user-link',
-        input
-          className: 'beatmapsets-search__input'
-          disabled: true
-          type: 'textbox'
-          placeholder: osu.trans('beatmaps.listing.search.login_required')
-        div className: 'beatmapsets-search__icon',
-          i className: 'fas fa-search'
+      el SearchInputGuest
 
 
   renderUser: =>
@@ -162,17 +147,9 @@ export class SearchPanel extends React.Component
         className: 'beatmapsets-search__background'
         style:
           backgroundImage: osu.urlPresence(@props.background)
-      div className: 'beatmapsets-search__input-container',
-        input
-          className: 'beatmapsets-search__input js-beatmapsets-search-input'
-          ref: @inputRef
-          type: 'textbox'
-          name: 'search'
-          onChange: @onChange
-          placeholder: osu.trans('beatmaps.listing.search.prompt')
-          defaultValue: controller.filters.query
-        div className: 'beatmapsets-search__icon',
-          i className: 'fas fa-search'
+      el SearchInput,
+        onChange: @onChange
+        ref: @inputRef
 
       @renderFilter
         multiselect: true
