@@ -118,6 +118,41 @@ abstract class Model extends BaseModel
         }
     }
 
+    /**
+     * @param Builder $query
+     * @param string $partitionColumn
+     * @return Builder
+     */
+    public function scopeFirstPerPartition(Builder $query, string $partitionColumn): Builder
+    {
+        $fromQuery = $query->toBase();
+        $grammar = $fromQuery->getGrammar();
+        $partitionColumn = $grammar->wrap($partitionColumn);
+        $partitionOrder = empty($fromQuery->orders)
+            ? ''
+            : ' order by '.implode(', ', array_map(function ($order) use ($grammar) {
+                return $grammar->wrap($order['column']).' '.$order['direction'];
+            }, $fromQuery->orders));
+
+        if (empty($fromQuery->columns)) {
+            $fromQuery->select();
+        }
+
+        $fromQuery->selectRaw("row_number() over (partition by $partitionColumn$partitionOrder) as `_partition_row`");
+
+        $newQuery = $this
+            ->newModelQuery()
+            ->setEagerLoads($query->getEagerLoads())
+            ->where('_partition_row', 1);
+
+        foreach (['limit', 'offset', 'orders'] as $field) {
+            $newQuery->getQuery()->$field = $fromQuery->$field;
+            $fromQuery->$field = null;
+        }
+
+        return $newQuery->from($fromQuery);
+    }
+
     public function scopeReorderBy($query, $field, $order)
     {
         $query->getQuery()->orders = null;

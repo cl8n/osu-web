@@ -65,28 +65,11 @@ abstract class Model extends BaseModel
     public function macroForListing()
     {
         return function ($query) {
-            $limit = config('osu.beatmaps.max-scores');
-            $newQuery = (clone $query)->with('user')->limit($limit * 3);
-
-            $baseResult = $newQuery->get();
-
-            $result = [];
-            $users = [];
-
-            foreach ($baseResult as $entry) {
-                if (isset($users[$entry->user_id])) {
-                    continue;
-                }
-
-                if (count($result) >= $limit) {
-                    break;
-                }
-
-                $users[$entry->user_id] = true;
-                $result[] = $entry;
-            }
-
-            return $result;
+            return $query
+                ->with('user')
+                ->firstPerPartition('user_id')
+                ->limit(config('osu.beatmaps.max-scores'))
+                ->get();
         };
     }
 
