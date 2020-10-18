@@ -6,6 +6,7 @@ import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
+import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
@@ -100,6 +101,49 @@ export default class Event extends React.PureComponent<Props> {
         </div>
       </div>
     );
+  }
+
+  private renderContent() {
+    const eventType = this.props.event.type === 'disqualify' && !this.discussion
+      ? 'disqualify_legacy'
+      : this.props.event.type;
+    const transComponents: Record<string, React.ReactNode> = {};
+    const transKey = `beatmapset_events.event.${eventType}`;
+    const transTemplate = osu.trans(transKey);
+
+    if (this.discussionId) {
+      const discussionUrl = this.discussion
+        ? BeatmapDiscussionHelper.url({ discussion: this.discussion })
+        : route('beatmap-discussions.show', { beatmap_discussion: this.discussionId });
+      const discussionLink = (
+        <a
+          className='js-beatmap-discussion--jump'
+          href={discussionUrl}
+          key='discussion'
+        >
+          {`#${this.discussionId}`}
+        </a>
+      );
+
+      transComponents.discussion = (
+        <StringWithComponent
+          mappings={{
+            //':author': '',
+            ':discussion': discussionLink,
+          }}
+          pattern={osu.trans('beatmapset_events.item.discussion')}
+        />
+      );
+
+      const firstPostMessage = this.firstPost?.message;
+      transComponents.preview = this.discussion
+        ? (firstPostMessage
+          ? BeatmapDiscussionHelper.previewMessage(firstPostMessage)
+          : <i>{osu.trans('beatmapset_events.item.no_preview')}</i>)
+        : <i>{osu.trans('beatmapset_events.item.discussion_deleted')}</i>;
+    }
+
+    //return stringiwthcomponent
   }
 
   private contentText() {

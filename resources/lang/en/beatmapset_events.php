@@ -15,12 +15,12 @@ return [
         'disqualify' => 'Disqualified by :user. Reason: :discussion (:text).',
         'disqualify_legacy' => 'Disqualified by :user. Reason: :text.',
         'genre_edit' => 'Genre changed from :old to :new.',
-        'issue_reopen' => 'Resolved issue :discussion reopened.',
-        'issue_resolve' => 'Issue :discussion marked as resolved.',
+        'issue_reopen' => 'Resolved issue :discussion reopened by :user.',
+        'issue_resolve' => 'Issue :discussion marked as resolved by :user.',
         'kudosu_allow' => 'Kudosu denial for discussion :discussion has been removed.',
         'kudosu_deny' => 'Discussion :discussion denied for kudosu.',
-        'kudosu_gain' => 'Discussion :discussion by :user obtained enough votes for kudosu.',
-        'kudosu_lost' => 'Discussion :discussion by :user lost votes and granted kudosu has been removed.',
+        'kudosu_gain' => 'Discussion :discussion obtained enough votes for kudosu.',
+        'kudosu_lost' => 'Discussion :discussion lost votes and granted kudosu has been removed.',
         'kudosu_recalculate' => 'Discussion :discussion has had its kudosu grants recalculated.',
         'language_edit' => 'Language changed from :old to :new.',
         'love' => 'Loved by :user.',
@@ -41,7 +41,9 @@ return [
 
     'item' => [
         'content' => 'Content',
-        'discussion_deleted' => '[deleted]',
+        'discussion' => ':discussion by :author',
+        'discussion_deleted' => 'deleted',
+        'no_preview' => 'no preview',
         'type' => 'Type',
     ],
 

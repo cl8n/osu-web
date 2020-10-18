@@ -115,7 +115,7 @@ class BeatmapDiscussionPostsController extends Controller
                 priv_check('BeatmapsetResetNominations', $discussion->beatmapset)->can();
 
             if ($resetNominations) {
-                $events[] = BeatmapsetEvent::NOMINATION_RESET;
+                $events[] = [BeatmapsetEvent::NOMINATION_RESET];
             } else {
                 $disqualify = priv_check('BeatmapsetDisqualify', $discussion->beatmapset)->can();
             }
@@ -126,10 +126,10 @@ class BeatmapDiscussionPostsController extends Controller
         if (!$newDiscussion && $discussion->isDirty('resolved')) {
             if ($discussion->resolved) {
                 priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
-                $events[] = BeatmapsetEvent::ISSUE_RESOLVE;
+                $events[] = [BeatmapsetEvent::ISSUE_RESOLVE];
             } else {
                 priv_check('BeatmapDiscussionReopen', $discussion)->ensureCan();
-                $events[] = BeatmapsetEvent::ISSUE_REOPEN;
+                $events[] = [BeatmapsetEvent::ISSUE_REOPEN];
                 $reopen = true;
             }
 
@@ -154,7 +154,7 @@ class BeatmapDiscussionPostsController extends Controller
             }
 
             foreach ($events as $event) {
-                BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
+                BeatmapsetEvent::log($event[0], Auth::user(), $posts[0], $event[1] ?? [])->saveOrExplode();
             }
 
             if ($disqualify) {
