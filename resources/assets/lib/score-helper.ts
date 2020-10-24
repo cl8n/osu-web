@@ -3,7 +3,11 @@
 
 import ScoreJson from 'interfaces/score-json';
 
-export function canBeReported(score: ScoreJson) {
+interface ScoreBestJson extends ScoreJson {
+  best_id: number;
+}
+
+export function canBeReported(score: ScoreJson): score is ScoreBestJson {
   return score.best_id != null
     && currentUser.id != null
     && score.user_id !== currentUser.id;
@@ -18,6 +22,6 @@ export function hasReplay(score: ScoreJson) {
   return score.replay;
 }
 
-export function hasShow(score: ScoreJson): score is ScoreJson & { best_id: number } {
+export function hasShow(score: ScoreJson): score is ScoreBestJson {
   return score.best_id != null;
 }
