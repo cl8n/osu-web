@@ -1174,6 +1174,12 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
+    public function scoresPinned(string $mode)
+    {
+
+        return $this->scoresBest($mode, true)->whereIn('score_id', $this->pinned_score_ids);
+    }
+
     public function topicWatches()
     {
         return $this->hasMany(TopicWatch::class);

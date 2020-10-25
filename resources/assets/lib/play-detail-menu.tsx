@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
-import { canBeReported, hasReplay, hasShow } from 'score-helper';
+import { canBePinned, canBeReported, hasReplay, hasShow } from 'score-helper';
 
 interface Props {
   score: ScoreJson;
@@ -39,6 +39,15 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
           </a>
         )}
 
+        {canBePinned(score) && (
+          <span
+            className='simple-menu__item'
+            onClick={this.onPin(dismiss)}
+          >
+            {osu.trans('users.show.extra.top_ranks.pin')}
+          </span>
+        )}
+
         {canBeReported(score) && (
           <ReportReportable
             className='simple-menu__item'
@@ -56,5 +65,13 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
         {children}
       </PopupMenuPersistent>
     );
+  }
+
+  private onPin = (dismiss: () => void) => {
+    return () => {
+
+
+      dismiss();
+    };
   }
 }

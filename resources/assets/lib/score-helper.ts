@@ -7,15 +7,19 @@ interface ScoreBestJson extends ScoreJson {
   best_id: number;
 }
 
+export function canBePinned(score: ScoreJson): score is ScoreBestJson {
+  return hasShow(score) && currentUser.id === score.user_id;
+}
+
 export function canBeReported(score: ScoreJson): score is ScoreBestJson {
-  return score.best_id != null
+  return hasShow(score)
     && currentUser.id != null
     && score.user_id !== currentUser.id;
 }
 
 // TODO: move to application state repository thingy later
 export function hasMenu(score: ScoreJson) {
-  return canBeReported(score) || hasReplay(score) || hasShow(score);
+  return hasReplay(score) || hasShow(score);
 }
 
 export function hasReplay(score: ScoreJson) {

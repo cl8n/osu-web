@@ -688,6 +688,11 @@ class UsersController extends Controller
                         ->reorderBy('score_id', 'desc')
                         ->with('beatmap', 'beatmap.beatmapset', 'user');
                     break;
+                case 'scoresPinned':
+                    $transformer = 'Score';
+                    $includes = ['beatmap', 'beatmapset', 'user'];
+                    $query = $user->scoresPinned($options['mode']);
+                    break;
                 case 'scoresRecent':
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'user'];
