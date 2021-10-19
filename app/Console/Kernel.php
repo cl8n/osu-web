@@ -35,6 +35,7 @@ class Kernel extends ConsoleKernel
         Commands\BuildsUpdatePropagationHistory::class,
 
         // forum
+        Commands\CloseLovedVotingTopics::class,
         Commands\ForumTopicCoversCleanup::class,
 
         // leaderboard recalculation
@@ -87,6 +88,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('builds:update-propagation-history')
             ->everyThirtyMinutes();
+
+        $schedule->command('forum:close-loved-voting-topics')
+            ->everyTenMinutes()
+            ->withoutOverlapping();
 
         $schedule->command('forum:topic-cover-cleanup --yes')
             ->daily()
