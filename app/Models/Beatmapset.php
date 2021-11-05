@@ -451,6 +451,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             return false;
         }
 
+        $url = str_replace('localhost:8081', 'mirror', $url);
         $contents = file_get_contents($url);
         if ($contents === false) {
             throw new BeatmapProcessorException('Error retrieving beatmap');

@@ -38,6 +38,7 @@ class ImageProcessorService
     public function process($method, $src)
     {
         $src = preg_replace('/https?:\/\//', '', $src);
+        $src = str_replace('localhost:8080', 'nginx', $src);
         try {
             $tmpFile = tmpfile();
             $bytesWritten = fwrite($tmpFile, file_get_contents($this->endpoint."/{$method}/{$src}"));
