@@ -2,16 +2,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import GameMode from 'interfaces/game-mode';
+import GameMode, { gameModes } from 'interfaces/game-mode';
 import { sumBy } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  beatmaps: Map<GameMode, BeatmapExtendedJson[]>;
+  beatmaps?: Map<GameMode, BeatmapExtendedJson[]>;
   counts?: Partial<Record<GameMode, number>>;
   currentMode: GameMode;
   hrefFunc?: (mode: GameMode) => string;
+  visit?: boolean;
 }
 
 export default class PlaymodeTabs extends React.Component<Props> {
@@ -19,8 +20,9 @@ export default class PlaymodeTabs extends React.Component<Props> {
     return (
       <div className='game-mode game-mode--beatmapsets'>
         <ul className='game-mode__items'>
-          {[...this.props.beatmaps].map(([mode, beatmaps]) => {
-            const disabled = beatmaps.length === 0;
+          {gameModes.map((mode) => {
+            const beatmaps = this.props.beatmaps?.get(mode);
+            const disabled = beatmaps != null && beatmaps.length === 0;
 
             const linkClass = classWithModifiers('game-mode-link', {
               active: mode === this.props.currentMode,
@@ -36,7 +38,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
                   data-disabled={disabled.toString()}
                   data-mode={mode}
                   href={this.props.hrefFunc?.(mode) ?? '#'}
-                  onClick={this.switchMode}
+                  onClick={this.props.visit ? undefined : this.switchMode}
                 >
                   {osu.trans(`beatmaps.mode.${mode}`)}
                   {count != null && <span className='game-mode-link__badge'>{count}</span>}
@@ -54,7 +56,10 @@ export default class PlaymodeTabs extends React.Component<Props> {
       return this.props.counts[mode];
     }
 
-    const count = sumBy(this.props.beatmaps.get(mode), (beatmap) => beatmap.convert ? 0 : 1);
+    const count = sumBy(
+      this.props.beatmaps?.get(mode),
+      (beatmap) => beatmap.convert ? 0 : 1,
+    );
 
     return count > 0 ? count : undefined;
   };

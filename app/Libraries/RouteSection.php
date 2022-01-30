@@ -94,6 +94,9 @@ class RouteSection
             'ranking_controller' => [
                 '_' => 'rankings',
             ],
+            'records_controller' => [
+                '_' => 'rankings',
+            ],
             'scores_controller' => [
                 '_' => 'beatmaps',
             ],

@@ -119,6 +119,9 @@ return [
         'ranking_controller' => [
             '_' => 'rankings',
         ],
+        'records_controller' => [
+            '_' => 'records',
+        ],
         'scores_controller' => [
             '_' => 'performance',
         ],

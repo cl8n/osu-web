@@ -257,6 +257,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
+    Route::get('records/{mode?}/{type?}', 'RecordsController@index')->name('records');
+
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);
 
     Route::post('session', 'SessionsController@store')->name('login');

@@ -1001,6 +1001,7 @@ function nav_links()
     ];
     $links['rankings'] = [
         'rankings.type.performance' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
+        'page_title.main.records_controller._' => route('records', ['mode' => $defaultMode, 'type' => App\Http\Controllers\RecordsController::DEFAULT_RECORD_TYPE]),
         'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
         'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
