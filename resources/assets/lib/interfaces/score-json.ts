@@ -39,6 +39,7 @@ export default interface ScoreJson {
   statistics: Record<ScoreStatisticsAttribute, number>;
   user: UserJson;
   user_id: number;
+  watch_count?: number;
   weight?: {
     percentage: number;
     pp: number;

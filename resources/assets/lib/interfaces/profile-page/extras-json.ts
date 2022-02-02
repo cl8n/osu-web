@@ -19,6 +19,7 @@ export default interface ExtrasJson {
   recentlyReceivedKudosu: KudosuHistoryJson[];
   scoresBest: ScoreJson[] | ErrorJson;
   scoresFirsts: ScoreJson[];
+  scoresMostWatched: ScoreJson[];
   scoresPinned: ScoreJson[];
   scoresRecent: ScoreJson[];
 }

@@ -162,6 +162,8 @@ export default class Historical extends React.Component<ExtraPageProps> {
             </div>
           </>
         }
+
+        <PlayDetailList controller={this.props.controller} section='scoresMostWatched' />
       </div>
     );
   }

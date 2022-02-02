@@ -17,7 +17,7 @@ export type BeatmapsetSection = typeof beatmapsetSections[number];
 export const topScoreSections = ['scoresPinned', 'scoresBest', 'scoresFirsts'] as const;
 export type TopScoreSection = typeof topScoreSections[number];
 
-const historicalSections = ['beatmapPlaycounts', 'scoresRecent'] as const;
+const historicalSections = ['beatmapPlaycounts', 'scoresMostWatched', 'scoresRecent'] as const;
 export type HistoricalSection = typeof historicalSections[number];
 
 type ProfilePageIncludes =
@@ -41,6 +41,7 @@ type ProfilePageIncludes =
   | 'replays_watched_counts'
   | 'scores_best_count'
   | 'scores_first_count'
+  | 'scores_most_watched_count'
   | 'scores_pinned_count'
   | 'scores_recent_count'
   | 'statistics'

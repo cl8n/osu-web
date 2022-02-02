@@ -13,7 +13,7 @@ import Controller from './controller';
 import { TopScoreSection } from './extra-page-props';
 import PlayDetail from './play-detail';
 
-type ScoreSections = TopScoreSection | 'scoresRecent';
+type ScoreSections = TopScoreSection | 'scoresMostWatched' | 'scoresRecent';
 
 const sectionMaps = {
   scoresBest: {
@@ -24,6 +24,10 @@ const sectionMaps = {
   scoresFirsts: {
     countKey: 'scores_first_count',
     translationKey: 'top_ranks.first',
+  },
+  scoresMostWatched: {
+    countKey: 'scores_most_watched_count',
+    translationKey: 'historical.most_watched_replays',
   },
   scoresPinned: {
     countKey: 'scores_pinned_count',

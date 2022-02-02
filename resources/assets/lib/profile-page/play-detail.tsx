@@ -97,6 +97,14 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
                     {score.pp != null && `${osu.formatNumber(Math.round(scoreWeight.pp))}pp`}
                   </span>
                 )}
+                {score.watch_count != null && (
+                  <span className={`${bn}__weighted-pp`}>
+                    <PpValue
+                      score={score}
+                      suffix={<span className={`${bn}__pp-unit`}>pp</span>}
+                    />
+                  </span>
+                )}
               </div>
 
               {scoreWeight != null && (
@@ -114,19 +122,28 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           </div>
 
           <div className={`${bn}__pp`}>
-            {shouldShowPp(beatmap) ? (
-              <PpValue
-                score={score}
-                suffix={<span className={`${bn}__pp-unit`}>pp</span>}
-              />
+            {score.watch_count == null ? (
+              shouldShowPp(beatmap) ? (
+                <PpValue
+                  score={score}
+                  suffix={<span className={`${bn}__pp-unit`}>pp</span>}
+                />
+              ) : (
+                <span title={osu.trans('users.show.extra.top_ranks.not_ranked')}>
+                  {(beatmap.status === 'loved') ? (
+                    <span className='fas fa-heart' />
+                  ) : (
+                    '-'
+                  )}
+                </span>
+              )
             ) : (
-              <span title={osu.trans('users.show.extra.top_ranks.not_ranked')}>
-                {(beatmap.status === 'loved') ? (
-                  <span className='fas fa-heart'/>
-                ) : (
-                  '-'
-                )}
-              </span>
+              <>
+                <span className={`${bn}__watch-count-icon`}>
+                  <span className='fas fa-eye' />
+                </span>
+                {osu.formatNumber(score.watch_count)}
+              </>
             )}
           </div>
 

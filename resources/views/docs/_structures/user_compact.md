@@ -63,6 +63,8 @@ ranked_beatmapset_count    | |
 replays_watched_counts     | |
 scores_best_count          | number
 scores_first_count         | number
+scores_most_watched_count  | number
+scores_pinned_count        | number
 scores_recent_count        | number
 statistics                 | |
 statistics_rulesets        | UserStatisticsRulesets

@@ -413,6 +413,7 @@ class UsersController extends Controller
         static $mapping = [
             'best' => 'scoresBest',
             'firsts' => 'scoresFirsts',
+            'most_watched' => 'scoresMostWatched',
             'pinned' => 'scoresPinned',
             'recent' => 'scoresRecent',
         ];
@@ -421,7 +422,7 @@ class UsersController extends Controller
 
         $perPage = $this->perPage;
 
-        if ($type === 'firsts' || $type === 'pinned') {
+        if ($type === 'firsts' || $type === 'most_watched' || $type === 'pinned') {
             // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
@@ -491,6 +492,8 @@ class UsersController extends Controller
      * - replays_watched_counts
      * - scores_best_count
      * - scores_first_count
+     * - scores_most_watched_count
+     * - scores_pinned_count
      * - scores_recent_count
      * - statistics
      * - statistics.country_rank
@@ -532,6 +535,7 @@ class UsersController extends Controller
             'replays_watched_counts',
             'scores_best_count',
             'scores_first_count',
+            'scores_most_watched_count',
             'scores_pinned_count',
             'scores_recent_count',
             'statistics',
@@ -571,6 +575,7 @@ class UsersController extends Controller
             $perPage = [
                 'scoresBest' => 5,
                 'scoresFirsts' => 5,
+                'scoresMostWatched' => 5,
                 'scoresPinned' => 5,
                 'scoresRecent' => 5,
 
@@ -732,6 +737,20 @@ class UsersController extends Controller
                         ->reorderBy('score_id', 'desc')
                         ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                     break;
+                case 'scoresMostWatched':
+                    $transformer = new ScoreTransformer();
+                    $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'watch_count'];
+                    $query = $user->scoresBest($options['mode'], true)
+                        ->addSelect(['watch_count' => fn ($q) => $q->selectRaw('osu_replays.play_count')])
+                        ->join(
+                            'osu_replays',
+                            'osu_scores_high.score_id',
+                            '=',
+                            'osu_replays.score_id',
+                        )
+                        ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD)
+                        ->reorderBy('watch_count', 'DESC');
+                    break;
                 case 'scoresPinned':
                     $transformer = new ScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
@@ -753,6 +772,9 @@ class UsersController extends Controller
             }
 
             if (!isset($collection)) {
+                // echo (clone $query)->limit($perPage)->offset($offset)->toSql();
+                // exit();
+
                 $collection = $query->limit($perPage)->offset($offset)->get();
 
                 if (isset($collectionFn)) {

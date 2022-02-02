@@ -29,6 +29,7 @@ class ScoreTransformer extends TransformerAbstract
         'current_user_attributes',
         'rank_country',
         'rank_global',
+        'watch_count',
         'weight',
         'user',
         'match',
@@ -104,6 +105,13 @@ class ScoreTransformer extends TransformerAbstract
     public function includeRankGlobal($score)
     {
         return $this->primitive($score->userRank([]));
+    }
+
+    public function includeWatchCount($score)
+    {
+        if ($score->watch_count !== null) {
+            return $this->primitive($score->watch_count);
+        }
     }
 
     public function includeBeatmap($score)

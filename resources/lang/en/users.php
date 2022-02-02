@@ -235,6 +235,9 @@ return [
                     'count' => 'times played',
                     'title' => 'Most Played Beatmaps',
                 ],
+                'most_watched_replays' => [
+                    'title' => 'Most Watched Replays'
+                ],
                 'recent_plays' => [
                     'accuracy' => 'accuracy: :percentage',
                     'title' => 'Recent Plays (24h)',

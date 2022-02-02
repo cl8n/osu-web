@@ -26,6 +26,7 @@ const sectionToUrlType = {
   rankedBeatmapsets: 'ranked',
   scoresBest: 'best',
   scoresFirsts: 'firsts',
+  scoresMostWatched: 'most_watched',
   scoresPinned: 'pinned',
   scoresRecent: 'recent',
 };
@@ -108,6 +109,7 @@ export default class Controller {
           recentlyReceivedKudosu: {},
           scoresBest: {},
           scoresFirsts: {},
+          scoresMostWatched: {},
           scoresPinned: {},
           scoresRecent: {},
         },
@@ -305,6 +307,7 @@ export default class Controller {
 
       case 'scoresBest':
       case 'scoresFirsts':
+      case 'scoresMostWatched':
       case 'scoresPinned':
       case 'scoresRecent':
         this.xhr[section] = apiShowMore(
