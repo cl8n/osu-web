@@ -226,7 +226,7 @@ class Beatmap extends Model
     public function scopeWithMaxCombo($query)
     {
         $mods = BeatmapDifficultyAttrib::NO_MODS;
-        $attrib = BeatmapDifficultyAttrib::MAX_COMBO;
+        $attrib = BeatmapDifficultyAttrib::ATTRIB_ID_MAX_COMBO;
         $attribTable = (new BeatmapDifficultyAttrib())->tableName();
         $mode = $this->qualifyColumn('playmode');
         $id = $this->qualifyColumn('beatmap_id');
@@ -284,6 +284,10 @@ class Beatmap extends Model
 
     public function maxCombo()
     {
+        $attributes = app('beatmap-difficulty-lookup')->getAttributes($this->getKey(), $this->mode);
+
+        return $attributes === null ? null : $attributes['maxCombo'];
+
         if (!$this->convert && array_key_exists('max_combo', $this->getAttributes())) {
             return $this->max_combo;
         }

@@ -7,6 +7,8 @@ namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
 use App\Libraries\AssetsManifest;
+use App\Libraries\BeatmapDifficultyLookup;
+use App\Libraries\BeatmapDifficultyLookupLocal;
 use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\ChatFilters;
 use App\Libraries\Groups;
@@ -17,6 +19,7 @@ use App\Libraries\OsuMessageSelector;
 use App\Libraries\RouteSection;
 use App\Libraries\User\ScorePins;
 use Datadog;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
@@ -90,6 +93,12 @@ class AppServiceProvider extends ServiceProvider
         foreach (static::SINGLETONS as $name => $class) {
             $this->app->singleton($name, fn () => new $class());
         }
+
+        $this->app->singleton('beatmap-difficulty', function (Container $app) {
+            return $app->make('config')->get('osu.beatmap_difficulty_cache.local')
+                ? new BeatmapDifficultyLookupLocal()
+                : new BeatmapDifficultyLookup();
+        });
 
         $this->app->singleton('hash', function ($app) {
             return new OsuHashManager($app);
