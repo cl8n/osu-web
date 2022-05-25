@@ -3,6 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
+    'currentHue' => $user->profileHue(),
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
     'pageDescription' => page_description($user->username),
 ])

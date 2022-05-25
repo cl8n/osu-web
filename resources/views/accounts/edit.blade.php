@@ -58,6 +58,7 @@
                     @include('accounts._edit_entry_simple', ['field' => 'user_discord'])
                     @include('accounts._edit_entry_simple', ['field' => 'user_website'])
                 </div>
+                @includeWhen(auth()->user()->isSupporter(), 'accounts._edit_profile_hue')
             </div>
         </div>
     </div>

@@ -739,6 +739,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->userProfileCustomization ? $this->userProfileCustomization->cover()->url() : null;
     }
 
+    public function profileHue(): ?int
+    {
+        return $this->isSupporter() ? $this->profileCustomization()->hue : null;
+    }
+
     public function getUserTwitterAttribute($value)
     {
         return presence(ltrim($value, '@'));

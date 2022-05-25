@@ -3,6 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
+    'currentHue' => $user->profileHue(),
     'titlePrepend' => osu_trans('users.posts.title', ['username' => $user->username]),
 ])
 

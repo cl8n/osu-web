@@ -32,6 +32,7 @@ return [
             'title' => 'Profile',
 
             'user' => [
+                'hue' => 'profile color',
                 'user_discord' => 'discord',
                 'user_from' => 'current location',
                 'user_interests' => 'interests',

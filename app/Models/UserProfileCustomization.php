@@ -192,6 +192,16 @@ class UserProfileCustomization extends Model
         $this->setOption('forum_posts_show_deleted', get_bool($value));
     }
 
+    public function getHueAttribute(): int
+    {
+        return $this->options['hue'] ?? section_to_hue_map('user');
+    }
+
+    public function setHueAttribute($value): void
+    {
+        $this->setOption('hue', clamp(get_int($value), 0, 359));
+    }
+
     public function getUserListFilterAttribute()
     {
         return $this->options['user_list_filter'] ?? static::USER_LIST['filters']['default'];
