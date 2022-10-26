@@ -1,0 +1,33 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.wiki-preview-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  background: hsl(var(--hsl-orange-3));
+  font-weight: bold;
+
+  @media @mobile {
+    font-size: @font-size--title-small;
+  }
+
+  &__link {
+    color: hsl(var(--hsl-c2));
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  &__version {
+    // color: hsl(var(--colour-orange-hue, 30%, 80%));
+    opacity: 0.5;
+  }
+}

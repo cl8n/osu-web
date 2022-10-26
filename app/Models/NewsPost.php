@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Exception;
 
 /**
+ * @property string $branch
  * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon|null $created_at

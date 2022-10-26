@@ -3,6 +3,28 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+Route::group(['middleware' => ['web']], function () {
+    Route::post('wiki-preview/github', 'WikiPreviewController@handleGithubWebhook');
+    Route::put('wiki-preview/set-pull-request', 'WikiPreviewController@setPullRequest')->name('wiki-preview.set-pull-request');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('home/news', 'NewsController', ['only' => ['index', 'show']]);
+    Route::get('news/{tumblrId}', 'NewsController@redirect');
+
+    Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
+    Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
+    Route::get('wiki/{locale?}/{path?}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
+    Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
+
+    route_redirect('/', 'home');
+    route_redirect('help/wiki/{path?}', 'wiki.show')->where('path', '.+');
+});
+
+Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();
+
+return;
+
 use App\Http\Middleware\ThrottleRequests;
 
 Route::group(['middleware' => ['web']], function () {

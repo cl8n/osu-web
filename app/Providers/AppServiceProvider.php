@@ -20,6 +20,7 @@ use App\Libraries\OsuMessageSelector;
 use App\Libraries\RateLimiter;
 use App\Libraries\RouteSection;
 use App\Libraries\User\ScorePins;
+use App\Libraries\WikiPreviewManager;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         'mods' => Mods::class,
         'route-section' => RouteSection::class,
         'score-pins' => ScorePins::class,
+        'wiki-preview-manager' => WikiPreviewManager::class,
     ];
 
     /**

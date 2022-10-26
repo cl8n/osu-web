@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             Middleware\VerifyCsrfToken::class,
             Middleware\SetLocale::class,
             Middleware\UpdateUserLastvisit::class,
+            Middleware\WikiPreviewSetPullRequest::class,
             Middleware\VerifyUserAlways::class,
             Middleware\CheckUserBanStatus::class,
             Middleware\TurbolinksSupport::class,

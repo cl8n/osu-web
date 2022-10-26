@@ -25,10 +25,7 @@
         $title .= e($titlePart);
 
         if ($i + 1 === count($titleTree)) {
-            // Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix.
-            if (strpos($titlePart, 'osu!') === false) {
-                $title .= ' | osu!';
-            }
+            $title .= ' | osu! wiki preview';
         } else {
             $title .= ' · ';
         }
@@ -101,11 +98,30 @@
             >
                 @yield('permanent-fixed-footer')
 
-                @if (config('osu.is_development_deploy'))
-                    <div class="development-deploy-footer">
-                        This is a development instance of the <a href="https://osu.ppy.sh" class="development-deploy-footer__link">osu! website</a>. Please do not login with your osu! credentials.
+                <div class="wiki-preview-footer">
+                    @php
+                        $wikiPreviewData = [
+                            'osu_web_version' => env('WIKI_PREVIEW_OSU_WEB_VERSION', '???'),
+                            'pull_requests' => [],
+                        ];
+                    @endphp
+
+                    <span>This is a previewer tool for wiki articles and news posts.</span>
+                    <div
+                        class="js-react--wiki-preview-footer"
+                        data-initial-data="{{ json_encode($wikiPreviewData) }}"
+                    ></div>
+                    <div class="wiki-preview-footer__links">
+                        <a class="wiki-preview-footer__link" href="https://github.com/cl8n/osu-web/tree/wiki-preview">Source code</a>
+                        <a class="wiki-preview-footer__link" href="https://osu.ppy.sh">Real osu! website</a>
+                        <span class="wiki-preview-footer__version">
+                            Previewing osu-web v{{ env('WIKI_PREVIEW_OSU_WEB_VERSION', '???') }}
+                        </span>
+                        <span class="wiki-preview-footer__version">
+                            Server provided by <a class="wiki-preview-footer__link" href="https://osu.ppy.sh/users/5773079">Walavouchey</a>
+                        </span>
                     </div>
-                @endif
+                </div>
             </div>
         </div>
 
@@ -129,6 +145,8 @@
         <script id="json-route-section" type="application/json">
             {!! json_encode($currentRoute) !!}
         </script>
+
+        @include('layout._react_js', ['src' => 'js/wiki-preview-branch-selector.js'])
 
         @yield("script")
     </body>
