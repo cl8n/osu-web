@@ -119,6 +119,7 @@ class BeatmapsetTest extends TestCase
         $beatmapset->nominate($nominator);
         $this->assertFalse($beatmapset->isQualified());
     }
+
     public function testNominateWithDefaultMetadata()
     {
         $beatmapset = $this->createBeatmapset([

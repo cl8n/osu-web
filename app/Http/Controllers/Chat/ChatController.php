@@ -144,6 +144,7 @@ class ChatController extends Controller
     }
 
     // TODO: move the listing to channels.index
+
     /**
      * @deprecated
      * @group Undocumented

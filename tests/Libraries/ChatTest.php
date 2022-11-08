@@ -165,7 +165,6 @@ class ChatTest extends TestCase
         );
     }
 
-
     public function testSendPMTooLongNotCreatingNewChannel()
     {
         $sender = User::factory()->create();

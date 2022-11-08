@@ -51,7 +51,6 @@ class PaymentProcessorTest extends TestCase
         $this->assertTrue($this->order->payments()->where('cancelled', true)->exists());
     }
 
-
     public function testCancelWithCancelledPayment()
     {
         $this->expectsEvents('store.payments.error.test');

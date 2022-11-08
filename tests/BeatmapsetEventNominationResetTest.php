@@ -57,6 +57,7 @@ class BeatmapsetEventNominationResetTest extends TestCase
         $this->assertSame($nominationResetReceivedCount + count($this->nominators), BeatmapsetEvent::nominationResetReceiveds()->count());
         $this->assertEqualsCanonicalizing(array_pluck($this->nominators, 'user_id'), BeatmapsetEvent::nominationResetReceiveds()->pluck('user_id')->all());
     }
+
     #endregion
 
     // FIXME: disqualification tests could probably do with some reorganization.

@@ -317,6 +317,7 @@ class ChannelsControllerTest extends TestCase
     //endregion
 
     //region DELETE /chat/channels/[channel_id]/users/[user_id] - Leave Channel
+
     /**
      * @dataProvider dataProvider
      */

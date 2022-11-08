@@ -455,7 +455,6 @@ class TopicsController extends Controller
         ));
     }
 
-
     /**
      * Create Topic
      *

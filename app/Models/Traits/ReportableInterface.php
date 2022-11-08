@@ -11,5 +11,6 @@ use App\Models\UserReport;
 interface ReportableInterface
 {
     public function reportBy(User $reporter, array $params): ?UserReport;
+
     public function trashed();
 }

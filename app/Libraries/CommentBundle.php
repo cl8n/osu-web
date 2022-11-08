@@ -35,7 +35,6 @@ class CommentBundle
         return new static($commentable, ['params' => ['parent_id' => 0]]);
     }
 
-
     public function __construct(private ?Commentable $commentable, array $options = [])
     {
         $this->user = auth()->user();

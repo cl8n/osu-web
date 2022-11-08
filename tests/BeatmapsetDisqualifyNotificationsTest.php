@@ -126,6 +126,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
+
     #endregion
 
     public function booleanDataProvider()

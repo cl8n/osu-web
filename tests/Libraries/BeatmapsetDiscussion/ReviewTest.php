@@ -322,6 +322,7 @@ class ReviewTest extends TestCase
     }
 
     // valid document containing issue embeds should reset nominations (for GMT)
+
     /**
      * @dataProvider dataProviderForQualifiedProblem
      */
