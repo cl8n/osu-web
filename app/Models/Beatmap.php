@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|null $beatmapset_id
  * @property float $bpm
  * @property string|null $checksum
+ * @property \Illuminate\Database\Eloquent\Collection<\App\Models\User> $creators
  * @property int $countNormal
  * @property int $countSlider
  * @property int $countSpinner
