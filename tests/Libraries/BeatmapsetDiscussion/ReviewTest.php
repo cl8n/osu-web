@@ -321,9 +321,9 @@ class ReviewTest extends TestCase
         Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
 
-    // valid document containing issue embeds should reset nominations (for GMT)
-
     /**
+     * valid document containing issue embeds should reset nominations (for GMT)
+     *
      * @dataProvider dataProviderForQualifiedProblem
      */
     public function testCreateDocumentDocumentValidWithNewIssuesShouldNotify($state, $shouldNotify)

@@ -143,12 +143,11 @@ class ChatController extends Controller
         ];
     }
 
-    // TODO: move the listing to channels.index
-
     /**
      * @deprecated
      * @group Undocumented
      */
+    // TODO: move the listing to channels.index
     public function presence()
     {
         return (new UserChannelList(auth()->user()))->get();
