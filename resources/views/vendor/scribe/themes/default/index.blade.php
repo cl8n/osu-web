@@ -46,6 +46,8 @@
 
     <script src="{{ u::getVersionedAsset($assetPathPrefix.'js/theme-default.js') }}"></script>
 
+    <script src="{{ unmix('js/runtime.js') }}"></script>
+    <script src="{{ unmix('js/docs.js') }}"></script>
     <link rel="stylesheet" href="{{ unmix('css/docs.css') }}">
 </head>
 
