@@ -36,7 +36,7 @@ return [
                 /*
                  * Match only routes whose paths match this pattern (use * as a wildcard to match any characters). Example: 'users/*'.
                  */
-                'prefixes' => ['api/*'],
+                'prefixes' => ['api/v2/*'],
 
                 /*
                  * Match only routes whose domains match this pattern (use * as a wildcard to match any characters). Example: 'api.*'.
@@ -97,7 +97,7 @@ return [
                      */
                     'config' => [
                         'app.env' => 'documentation',
-                        // 'app.debug' => false,
+                        'app.debug' => false,
                     ],
 
                     /*
@@ -185,7 +185,7 @@ return [
          * Add a Try It Out button to your endpoints so consumers can test endpoints right from their browser.
          * Don't forget to enable CORS headers for your endpoints.
          */
-        'enabled' => true,
+        'enabled' => false,
 
         /**
          * The base URL for the API tester to use (for example, you can set this to your staging URL).
@@ -211,7 +211,7 @@ return [
         /*
          * Set this to true if any endpoints in your API use authentication.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          * Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
@@ -247,7 +247,7 @@ return [
          * Any extra authentication-related info for your users. For instance, you can describe how to find or generate their auth credentials.
          * Markdown and HTML are supported.
          */
-        'extra_info' => 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.',
+        'extra_info' => null,
     ],
 
     /*
@@ -310,7 +310,7 @@ INTRO
         /*
          * Endpoints which don't have a @group will be placed in this default group.
          */
-        'default' => 'Endpoints',
+        'default' => 'Undocumented',
 
         /*
          * By default, Scribe will sort groups alphabetically, and endpoints in the order their routes are defined.
@@ -344,7 +344,7 @@ INTRO
      * - 'logo' => 'img/logo.png' // for `laravel` type
      *
      */
-    'logo' => false,
+    'logo' => '../images/layout/osu-logo-white.svg',
 
     /**
      * Customize the "Last updated" value displayed in the docs by specifying tokens and formats.
@@ -356,7 +356,7 @@ INTRO
      * The format you pass to `date` will be passed to PhP's `date()` function.
      * The format you pass to `git` can be either "short" or "long".
      */
-    'last_updated' => 'Last updated: {date:F j, Y}',
+    'last_updated' => 'Last updated: {date:j F Y}',
 
     'examples' => [
         /*

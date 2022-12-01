@@ -1,15 +1,33 @@
+{{--
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
+--}}
 @php
-    /** @var  Knuckles\Camel\Output\OutputEndpointData $endpoint */
+    use App\Libraries\ApidocRouteHelper;
+
+    $apidocRouteHelper = ApidocRouteHelper::instance();
+    [$topDescription, $bottomDescription] = ApidocRouteHelper::getDescriptions($endpoint);
+    $displayUri = ApidocRouteHelper::getDisplayUri($endpoint);
+    $title = ApidocRouteHelper::getTitle($endpoint);
 @endphp
 
-<h2 id="{!! $endpoint->fullSlug() !!}">{{ $endpoint->name() }}</h2>
+@if ($showEndpointTitle ?? true)
+    <h2 id="{{ Str::slug($title) }}">{{ $title }}</h2>
+@endif
 
-<p>
-@component('scribe::components.badges.auth', ['authenticated' => $endpoint->metadata->authenticated])
-@endcomponent
-</p>
+{!! Parsedown::instance()->text($topDescription) !!}
 
-{!! Parsedown::instance()->text($endpoint->metadata->description ?: '') !!}
+@if (ApidocRouteHelper::isApiEndpoint($endpoint))
+    <p>
+        @if ($apidocRouteHelper->getAuth($endpoint))
+            <a href='#resource-owner' class='badge badge-scope badge-user'>requires user</a>
+        @endif
+
+        @foreach ($apidocRouteHelper->getScopeTags($endpoint) as $scope)
+            <x-docs.scope-badge :scope="$scope" />
+        @endforeach
+    </p>
+@endif
 
 <span id="example-requests-{!! $endpoint->endpointId() !!}">
 <blockquote>Example request:</blockquote>
@@ -69,29 +87,32 @@
       data-headers='@json($endpoint->headers)'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('{{ $endpoint->endpointId() }}', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-        @if($metadata['try_it_out']['enabled'] ?? false)
-            <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-{{ $endpoint->endpointId() }}"
-                    onclick="tryItOut('{{ $endpoint->endpointId() }}');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-{{ $endpoint->endpointId() }}"
-                    onclick="cancelTryOut('{{ $endpoint->endpointId() }}');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-{{ $endpoint->endpointId() }}" hidden>Send Request 💥
-            </button>
-        @endif
-    </h3>
+    @if ($showRequestTitle ?? true)
+        <h3>
+            Request&nbsp;&nbsp;&nbsp;
+            @if($metadata['try_it_out']['enabled'] ?? false)
+                <button type="button"
+                        style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                        id="btn-tryout-{{ $endpoint->endpointId() }}"
+                        onclick="tryItOut('{{ $endpoint->endpointId() }}');">Try it out ⚡
+                </button>
+                <button type="button"
+                        style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                        id="btn-canceltryout-{{ $endpoint->endpointId() }}"
+                        onclick="cancelTryOut('{{ $endpoint->endpointId() }}');" hidden>Cancel 🛑
+                </button>&nbsp;&nbsp;
+                <button type="submit"
+                        style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                        id="btn-executetryout-{{ $endpoint->endpointId() }}" hidden>Send Request 💥
+                </button>
+            @endif
+        </h3>
+    @endif
+
     @foreach($endpoint->httpMethods as $method)
         <p>
             @component('scribe::components.badges.http-method', ['method' => $method])@endcomponent
-            <b><code>{{$endpoint->uri}}</code></b>
+            <b><code>{{ $displayUri }}</code></b>
         </p>
     @endforeach
     @if($endpoint->metadata->authenticated && $metadata['auth']['location'] === 'header')
@@ -157,3 +178,5 @@
             :isInput="false"
     />
 @endif
+
+{!! Parsedown::instance()->text($bottomDescription) !!}

@@ -107,6 +107,9 @@ const entry = {
   app: [
     './resources/assets/less/app.less',
   ],
+  docs: [
+    './resources/assets/less/docs.less',
+  ],
 };
 
 const entrypointsPath = 'resources/assets/lib/entrypoints';

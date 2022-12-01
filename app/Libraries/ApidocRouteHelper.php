@@ -6,18 +6,39 @@
 namespace App\Libraries;
 
 use App\Http\Middleware\RequireScopes;
+use Knuckles\Camel\Output\OutputEndpointData;
 
 class ApidocRouteHelper
 {
     private $routeScopes = [];
 
-    public static function scopeBadge($scope)
+    /**
+     * Get the description of an endpoint, split into two parts by horizontal rule.
+     */
+    public static function getDescriptions(OutputEndpointData $endpoint): array
     {
-        $scopeLower = strtolower($scope);
+        $descriptions = explode("\n---\n", $endpoint->metadata->description ?? '', 2);
 
-        return \Html::link("#scope-{$scopeLower}", $scope, ['class' => "badge badge-scope badge-scope-{$scopeLower}"]);
+        return [$descriptions[0], $descriptions[1] ?? ''];
     }
 
+    /**
+     * Get the URI of an endpoint for display in documentation.
+     */
+    public static function getDisplayUri(OutputEndpointData $endpoint): string
+    {
+        return static::isApiEndpoint($endpoint)
+            ? substr($endpoint->uri, 6)
+            : config('app.url').$endpoint->uri;
+    }
+
+    /**
+     * Get the title of an endpoint for display in documentation.
+     */
+    public static function getTitle(OutputEndpointData $endpoint): string
+    {
+        return $endpoint->metadata->title ?: static::getDisplayUri($endpoint);
+    }
 
     public static function instance()
     {
@@ -28,6 +49,14 @@ class ApidocRouteHelper
         }
 
         return $instance;
+    }
+
+    /**
+     * Whether the endpoint is part of API v2.
+     */
+    public static function isApiEndpoint(OutputEndpointData $endpoint): bool
+    {
+        return substr($endpoint->uri, 0, 6) === 'api/v2';
     }
 
     private static function keyFor(array $methods, string $uri)
@@ -77,13 +106,19 @@ class ApidocRouteHelper
         }
     }
 
-    public function getAuth(array $methods, string $uri)
+    /**
+     * Whether the endpoint requires an authenticated user.
+     */
+    public function getAuth(OutputEndpointData $endpoint): bool
     {
-        return $this->routeScopes[static::keyFor($methods, $uri)]['auth'];
+        return $this->routeScopes[static::keyFor($endpoint->httpMethods, $endpoint->uri)]['auth'];
     }
 
-    public function getScopeTags(array $methods, string $uri)
+    /**
+     * Get the scopes of an endpoint for display in documentation.
+     */
+    public function getScopeTags(OutputEndpointData $endpoint): array
     {
-        return $this->routeScopes[static::keyFor($methods, $uri)]['scopes'];
+        return $this->routeScopes[static::keyFor($endpoint->httpMethods, $endpoint->uri)]['scopes'];
     }
 }

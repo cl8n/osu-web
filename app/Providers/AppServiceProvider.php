@@ -24,6 +24,7 @@ use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
+use Knuckles\Scribe\Scribe;
 use Laravel\Octane\Contracts\DispatchesTasks;
 use Laravel\Octane\SequentialTaskDispatcher;
 use Laravel\Octane\Swoole\SwooleTaskDispatcher;
@@ -72,6 +73,8 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
         });
+
+        Scribe::normalizeEndpointUrlUsing(fn ($uri) => $uri);
 
         $this->app->make('translator')->setSelector(new OsuMessageSelector());
 
