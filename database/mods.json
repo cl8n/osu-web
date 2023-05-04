@@ -14,6 +14,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HR",
           "DA"
@@ -29,6 +34,11 @@
         "Description": "You can't fail, no matter what.",
         "Type": "DifficultyReduction",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "SD",
           "PF",
@@ -53,6 +63,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -78,6 +93,7 @@
             "Type": "number"
           }
         ],
+        "Icon": null,
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -98,6 +114,11 @@
         "Description": "Everything just got a bit harder...",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "EZ",
           "DA",
@@ -119,6 +140,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "PF",
@@ -144,6 +170,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -168,6 +199,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -193,6 +229,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -218,6 +259,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "SI",
           "TC",
@@ -247,6 +293,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "BL"
         ],
@@ -261,6 +312,11 @@
         "Description": "Play with blinds on your screen.",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "FL"
         ],
@@ -275,6 +331,7 @@
         "Description": "Once you start a slider, follow precisely or get a miss.",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": null,
         "IncompatibleMods": [
           "TP",
           "CL"
@@ -286,7 +343,7 @@
       },
       {
         "Acronym": "TP",
-        "Name": "Target",
+        "Name": "Target Practice",
         "Description": "Practice keeping up with the beat of the song.",
         "Type": "Conversion",
         "Settings": [
@@ -299,6 +356,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "SD",
           "ST",
@@ -339,6 +401,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "EZ",
           "HR"
@@ -371,6 +438,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "ST"
         ],
@@ -394,6 +466,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "TP"
         ],
@@ -413,6 +490,11 @@
             "Type": "string"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HR"
         ],
@@ -427,6 +509,11 @@
         "Description": "Don't use the same key twice in a row!",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "SG",
           "AT",
@@ -444,6 +531,7 @@
         "Description": "You must only use one key!",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": null,
         "IncompatibleMods": [
           "AL",
           "AT",
@@ -461,6 +549,11 @@
         "Description": "Watch a perfect automated play through the song.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -486,6 +579,11 @@
         "Description": "Watch the video without visual distractions.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -512,6 +610,11 @@
         "Description": "You don't need to click. Give your clicking/tapping fingers a break from the heat of things.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -534,6 +637,11 @@
         "Description": "Automatic cursor movement - just follow the rhythm.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -556,6 +664,11 @@
         "Description": "Spinners will be automatically completed.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "TP",
           "AT",
@@ -573,6 +686,11 @@
         "Description": "Everything rotates. EVERYTHING.",
         "Type": "Fun",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "WG",
           "MG",
@@ -594,6 +712,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "TR",
           "MG",
@@ -610,6 +733,11 @@
         "Description": "Circles spin in. No approach circles.",
         "Type": "Fun",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HD",
           "GR",
@@ -633,6 +761,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "SI",
           "GR",
@@ -656,6 +789,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "SI",
           "GR",
@@ -687,6 +825,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -719,6 +862,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -738,6 +886,7 @@
         "Description": "Put your faith in the approach circles...",
         "Type": "Fun",
         "Settings": [],
+        "Icon": null,
         "IncompatibleMods": [
           "HD",
           "TP",
@@ -765,6 +914,7 @@
             "Type": "string"
           }
         ],
+        "Icon": null,
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -786,6 +936,11 @@
             "Type": "string"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Regular"
+        },
         "IncompatibleMods": [
           "HD",
           "TP",
@@ -806,6 +961,10 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
@@ -814,14 +973,15 @@
             "Type": "number"
           },
           {
-            "Name": "inverse_muting",
-            "Type": "boolean"
-          },
-          {
             "Name": "affects_hit_sounds",
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -839,6 +999,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -856,6 +1021,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "AT",
           "CN",
@@ -881,6 +1051,7 @@
             "Type": "number"
           }
         ],
+        "Icon": null,
         "IncompatibleMods": [
           "AT",
           "CN",
@@ -909,6 +1080,7 @@
             "Type": "boolean"
           }
         ],
+        "Icon": null,
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -930,6 +1102,7 @@
         "Description": "Burn the notes into your memory.",
         "Type": "Fun",
         "Settings": [],
+        "Icon": null,
         "IncompatibleMods": [
           "AD"
         ],
@@ -944,6 +1117,11 @@
         "Description": "Automatically applied to plays on devices with a touchscreen.",
         "Type": "System",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -962,6 +1140,11 @@
         "Description": "Beats move slower, and less accuracy required!",
         "Type": "DifficultyReduction",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HR",
           "DA"
@@ -977,6 +1160,11 @@
         "Description": "You can't fail, no matter what.",
         "Type": "DifficultyReduction",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "SD",
           "PF",
@@ -1000,6 +1188,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1025,6 +1218,7 @@
             "Type": "number"
           }
         ],
+        "Icon": null,
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1045,6 +1239,11 @@
         "Description": "Everything just got a bit harder...",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "EZ",
           "DA"
@@ -1065,6 +1264,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "PF",
@@ -1088,6 +1292,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -1111,6 +1320,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1136,6 +1350,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1156,6 +1375,11 @@
         "Description": "Beats fade out before you hit them!",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1177,6 +1401,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1194,6 +1423,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "SW"
         ],
@@ -1225,6 +1459,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "EZ",
           "HR"
@@ -1240,6 +1479,11 @@
         "Description": "Feeling nostalgic?",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1252,6 +1496,7 @@
         "Description": "Dons become kats, kats become dons",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": null,
         "IncompatibleMods": [
           "RD"
         ],
@@ -1266,6 +1511,11 @@
         "Description": "Watch a perfect automated play through the song.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -1285,6 +1535,11 @@
         "Description": "Watch the video without visual distractions.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -1305,6 +1560,11 @@
         "Description": "No ninja-like spinners, demanding drumrolls or unexpected katu's.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -1336,6 +1596,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1368,6 +1633,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1388,6 +1658,10 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
@@ -1396,14 +1670,15 @@
             "Type": "number"
           },
           {
-            "Name": "inverse_muting",
-            "Type": "boolean"
-          },
-          {
             "Name": "affects_hit_sounds",
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1425,6 +1700,7 @@
             "Type": "boolean"
           }
         ],
+        "Icon": null,
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1457,6 +1733,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HR",
           "DA"
@@ -1472,6 +1753,11 @@
         "Description": "You can't fail, no matter what.",
         "Type": "DifficultyReduction",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "SD",
           "PF",
@@ -1495,6 +1781,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1519,6 +1810,7 @@
             "Type": "number"
           }
         ],
+        "Icon": null,
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1538,6 +1830,11 @@
         "Description": "Everything just got a bit harder...",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "EZ",
           "DA"
@@ -1558,6 +1855,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "PF",
@@ -1581,6 +1883,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -1604,6 +1911,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1628,6 +1940,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1647,6 +1964,11 @@
         "Description": "Play with fading fruits.",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1668,6 +1990,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1705,6 +2032,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "EZ",
           "HR"
@@ -1720,6 +2052,11 @@
         "Description": "Feeling nostalgic?",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1732,6 +2069,11 @@
         "Description": "Fruits are flipped horizontally.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1744,6 +2086,11 @@
         "Description": "Watch a perfect automated play through the song.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -1762,6 +2109,11 @@
         "Description": "Watch the video without visual distractions.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -1781,6 +2133,11 @@
         "Description": "Use the mouse to control the catcher.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -1812,6 +2169,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1843,6 +2205,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1861,6 +2228,11 @@
         "Description": "The fruits are... floating?",
         "Type": "Fun",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1874,6 +2246,10 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
@@ -1882,14 +2258,15 @@
             "Type": "number"
           },
           {
-            "Name": "inverse_muting",
-            "Type": "boolean"
-          },
-          {
             "Name": "affects_hit_sounds",
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1907,6 +2284,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -1930,6 +2312,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HR",
           "DA"
@@ -1945,6 +2332,11 @@
         "Description": "You can't fail, no matter what.",
         "Type": "DifficultyReduction",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "SD",
           "PF",
@@ -1967,6 +2359,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -1992,6 +2389,7 @@
             "Type": "number"
           }
         ],
+        "Icon": null,
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -2012,6 +2410,11 @@
         "Description": "Everything just got a bit harder...",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "EZ",
           "DA"
@@ -2032,6 +2435,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "PF",
@@ -2054,6 +2462,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -2076,6 +2489,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -2101,6 +2519,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -2121,6 +2544,11 @@
         "Description": "Keys appear out of nowhere!",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "HD",
           "FL"
@@ -2136,6 +2564,11 @@
         "Description": "Keys fade out before you hit them!",
         "Type": "DifficultyIncrease",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "FI",
           "FL"
@@ -2160,6 +2593,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "FI",
           "HD"
@@ -2175,6 +2613,11 @@
         "Description": "Play with four keys.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "5K",
           "6K",
@@ -2197,6 +2640,11 @@
         "Description": "Play with five keys.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "4K",
           "6K",
@@ -2219,6 +2667,11 @@
         "Description": "Play with six keys.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "4K",
           "5K",
@@ -2241,6 +2694,11 @@
         "Description": "Play with seven keys.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "4K",
           "5K",
@@ -2263,6 +2721,11 @@
         "Description": "Play with eight keys.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "4K",
           "5K",
@@ -2285,6 +2748,11 @@
         "Description": "Play with nine keys.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "4K",
           "5K",
@@ -2307,6 +2775,7 @@
         "Description": "Play with ten keys.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": null,
         "IncompatibleMods": [
           "4K",
           "5K",
@@ -2329,6 +2798,11 @@
         "Description": "Play with one key.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "4K",
           "5K",
@@ -2351,6 +2825,11 @@
         "Description": "Play with two keys.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "4K",
           "5K",
@@ -2373,6 +2852,11 @@
         "Description": "Play with three keys.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "4K",
           "5K",
@@ -2400,6 +2884,11 @@
             "Type": "number"
           }
         ],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2412,6 +2901,7 @@
         "Description": "Double the stages, double the fun!",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": null,
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2424,6 +2914,11 @@
         "Description": "Notes are flipped horizontally.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2449,6 +2944,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "EZ",
           "HR"
@@ -2464,6 +2964,11 @@
         "Description": "Feeling nostalgic?",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2476,6 +2981,11 @@
         "Description": "Hold the keys. To the beat.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HO"
         ],
@@ -2490,6 +3000,11 @@
         "Description": "No more tricky speed changes!",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2502,6 +3017,11 @@
         "Description": "Replaces all hold notes with normal notes.",
         "Type": "Conversion",
         "Settings": [],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "IN"
         ],
@@ -2516,6 +3036,11 @@
         "Description": "Watch a perfect automated play through the song.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -2534,6 +3059,11 @@
         "Description": "Watch the video without visual distractions.",
         "Type": "Automation",
         "Settings": [],
+        "Icon": {
+          "Family": "osuModsFont",
+          "Icon": "",
+          "Weight": null
+        },
         "IncompatibleMods": [
           "NF",
           "SD",
@@ -2566,6 +3096,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -2598,6 +3133,11 @@
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [
           "HT",
           "DC",
@@ -2618,6 +3158,10 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
@@ -2626,14 +3170,15 @@
             "Type": "number"
           },
           {
-            "Name": "inverse_muting",
-            "Type": "boolean"
-          },
-          {
             "Name": "affects_hit_sounds",
             "Type": "boolean"
           }
         ],
+        "Icon": {
+          "Family": "FontAwesome",
+          "Icon": "",
+          "Weight": "Solid"
+        },
         "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2655,6 +3200,7 @@
             "Type": "boolean"
           }
         ],
+        "Icon": null,
         "IncompatibleMods": [
           "HT",
           "DC",

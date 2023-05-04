@@ -4,8 +4,8 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 const Watchpack = require('watchpack');
+const exportMods = require('./resources/assets/lib/cli/export-mods');
 const generateLocalizations = require('./resources/assets/lib/cli/generate-localizations');
-const modNamesGenerator = require('./resources/assets/lib/cli/mod-names-generator');
 
 const spawnOptions = { stdio: 'inherit' };
 
@@ -19,7 +19,7 @@ let resolved = false;
 
 const watches = [
   {
-    callback: modNamesGenerator,
+    callback: exportMods,
     path: modsFile,
     type: 'file',
   },

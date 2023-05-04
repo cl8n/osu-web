@@ -4,7 +4,7 @@
 import GameMode from 'interfaces/game-mode';
 import SoloScoreJson, { SoloScoreStatisticsAttribute } from 'interfaces/solo-score-json';
 import { route } from 'laroute';
-import modNames from 'mod-names.json';
+import mods from 'mods.json';
 import core from 'osu-core-singleton';
 import { rulesetName } from './beatmap-helper';
 import { trans } from './lang';
@@ -94,7 +94,7 @@ export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
 };
 
 export function modName(acronym: string): string {
-  return modNames[acronym] ?? 'unknown';
+  return mods[acronym]?.name ?? 'Unknown Mod';
 }
 
 export function scoreDownloadUrl(score: SoloScoreJson) {

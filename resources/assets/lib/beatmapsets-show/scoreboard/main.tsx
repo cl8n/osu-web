@@ -6,6 +6,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import { route } from 'laroute';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import exportedMods from 'mods.json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -42,6 +43,8 @@ export default class Main extends React.Component<Props> {
 
   @computed
   private get mods() {
+    return Object.keys(exportedMods);
+
     if (this.controller.beatmap.mode === 'mania' && this.controller.beatmap.convert) {
       return maniaConvertMods;
     }

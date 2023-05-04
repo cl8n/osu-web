@@ -1,10 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-declare module 'mod-names.json' {
-  const modNames: Partial<Record<string, string>>;
+declare module 'mods.json' {
+  export interface ModJson {
+    icon?: {
+      family: string;
+      icon: string;
+      weight: string | null;
+    };
+    name: string;
+    type: string;
+  }
 
-  export default modNames;
+  const mods: Partial<Record<string, ModJson>>;
+
+  export default mods;
 }
 
 // Scoping to prevent global type import pollution.

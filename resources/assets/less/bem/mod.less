@@ -2,40 +2,93 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .mod {
-  height: var(--mod-height, @mod-height-normal);
-  width: calc($height * unit(@mod-width) / unit(@mod-height));
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  @_top: mod;
+  
+  // https://github.com/ppy/osu/blob/06e73594f80855ffa9cb08195bf65b84b8854c15/osu.Game/Rulesets/UI/ModIcon.cs#L94
+  @mod-icon-color: #555555;
+  // https://www.figma.com/file/QuGqnnM2zyhDaz2TyCsON1/New-Mods?node-id=20%3A667
+  @mod-icon-color-no-mod: #ffcc22;
+  // https://github.com/ppy/osu/blob/06e73594f80855ffa9cb08195bf65b84b8854c15/osu.Game/Graphics/OsuColour.cs#L142-L170
+  @mod-type-colors: {
+    automation: @osu-colour-blue-1;
+    // conversion: #8c66ff;
+    conversion: hsl(var(--colour-purple-hue), 100%, 80%);
+    difficulty-increase: @osu-colour-orange-1;
+    difficulty-reduction: @osu-colour-lime-1;
+    // fun: @osu-colour-pink-1;
+    fun: hsl(var(--colour-pink-hue), 100%, 80%);
+    // system: #777777;
+    system: #555555;
+  };
 
-  .all(@name, @filename) {
-    &--@{name} {
-      .at2x-simple("~@images/badges/mods/mod_@{filename}.png");
+  align-items: center;
+  display: flex;
+  font-size: var(--mod-height, @mod-height-normal);
+  justify-content: center;
+  position: relative;
+
+  &__acronym, &__icon {
+    color: @mod-icon-color;
+    position: absolute;
+
+    .@{_top}--system & {
+      color: @mod-icon-color-no-mod;
     }
   }
 
-  .all(4K, '4K');
-  .all(5K, '5K');
-  .all(6K, '6K');
-  .all(7K, '7K');
-  .all(8K, '8K');
-  .all(9K, '9K');
-  .all(AP, 'autopilot');
-  .all(DT, 'double-time');
-  .all(EZ, 'easy');
-  .all(FI, 'fader');
-  .all(FL, 'flashlight');
-  .all(HD, 'hidden');
-  .all(HR, 'hard-rock');
-  .all(HT, 'half');
-  .all(MR, 'mirror');
-  .all(NC, 'nightcore');
-  .all(NF, 'no-fail');
-  .all(NM, 'no-mod');
-  .all(PF, 'perfect');
-  .all(RX, 'relax');
-  .all(SD, 'sudden-death');
-  .all(SO, 'spun-out');
-  .all(TD, 'touchdevice');
-  .all(V2, 'v2');
+  &__acronym {
+    font-family: @font-grade;
+    font-size: 50%;
+    font-weight: 500;
+    padding-top: 0.15em; // Compensating for font baseline being too high
+  }
+
+  &__background {
+    .far();
+    color: @mod-type-colors[system];
+    font-family: FontAwesomeMods;
+
+    // each(@mod-type-colors, {
+    //   &--@{key} {
+    //     color: @value;
+    //   }
+    // });
+
+    each(@mod-type-colors, {
+      .@{_top}--@{key} & {
+        color: @value;
+      }
+    });
+
+    &::before {
+      content: '\e800';
+    }
+  }
+
+  &__icon {
+    &--fa-regular {
+      .far();
+      // This is just a guess to make FontAwesome icons appear similar in size
+      // to in-house mod designs. None of the mod or mod menu designs use
+      // FontAwesome icons.
+      font-size: 75%;
+    }
+
+    &--fa-solid {
+      .fas();
+      // This is just a guess to make FontAwesome icons appear similar in size
+      // to in-house mod designs. None of the mod or mod menu designs use
+      // FontAwesome icons.
+      font-size: 75%;
+    }
+
+    &--no-mod {
+      color: @mod-icon-color-no-mod;
+    }
+
+    &--osu {
+      .far();
+      font-family: FontAwesomeMods;
+    }
+  }
 }
