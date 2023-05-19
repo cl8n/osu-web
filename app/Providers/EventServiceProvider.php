@@ -7,6 +7,7 @@ namespace App\Providers;
 
 use App\Libraries\MedalUnlockHelpers;
 use App\Listeners;
+use App\Listeners\DisableModelEventsInMigrations;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -20,6 +21,7 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     protected $subscribe = [
+        DisableModelEventsInMigrations::class,
         Listeners\Fulfillments\GenericSubscribers::class,
         Listeners\Fulfillments\PaymentSubscribers::class,
         Listeners\Fulfillments\ValidationSubscribers::class,

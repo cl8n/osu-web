@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use App\Events\ModelCreated;
+use App\Events\ModelUpdating;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\MorphMap;
 use App\Libraries\Transactions\AfterCommit;
@@ -25,6 +27,10 @@ abstract class Model extends BaseModel
     const MAX_FIELD_LENGTHS = [];
 
     protected $connection = 'mysql';
+    protected $dispatchesEvents = [
+        'created' => ModelCreated::class,
+        'updating' => ModelUpdating::class,
+    ];
     protected $guarded = [];
     protected $macros;
     protected $primaryKeys;

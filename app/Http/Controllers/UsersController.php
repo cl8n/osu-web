@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserViewAttempted;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
@@ -619,6 +620,10 @@ class UsersController extends Controller
      */
     public function show($id, $mode = null)
     {
+        if (!is_json_request()) {
+            event(new UserViewAttempted());
+        }
+
         $user = FindForProfilePage::find($id, get_string(request('key')));
 
         $currentMode = $mode ?? $user->playmode;

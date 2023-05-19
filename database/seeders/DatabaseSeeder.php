@@ -5,6 +5,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Model;
 use Exception;
 use Illuminate\Database\Seeder;
 
@@ -53,5 +54,11 @@ class DatabaseSeeder extends Seeder
         } catch (Exception $ex) {
             $this->command->error($ex->getMessage());
         }
+    }
+
+    public function __invoke(array $parameters = [])
+    {
+        // Disable model events while the main seeder is running.
+        return Model::withoutEvents(fn () => parent::__invoke($parameters));
     }
 }
