@@ -17,6 +17,7 @@ use App\Traits\Validatable;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\ClassMorphViolationException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
@@ -51,7 +52,42 @@ abstract class Model extends BaseModel
 
     public function getKey()
     {
+        if (isset($this->primaryKeys)) {
+            return implode(':', array_map(
+                fn (string $column) => (string) $this->getRawAttribute($column),
+                $this->primaryKeys,
+            ));
+        }
+
         return $this->getRawAttribute($this->primaryKey);
+    }
+
+    // Override to work with composite primary keys.
+    public function newQueryForRestoration($ids)
+    {
+        if (!isset($this->primaryKeys)) {
+            return parent::newQueryForRestoration($ids);
+        }
+
+        $compositeKeys = array_wrap($ids);
+        $primaryKeyCount = count($this->primaryKeys);
+        $query = $this->newQueryWithoutScopes();
+
+        foreach ($compositeKeys as $compositeKey) {
+            $keys = explode(':', $compositeKey);
+
+            if (count($keys) !== $primaryKeyCount) {
+                throw new Exception('Invalid composite key saved for restoration');
+            }
+
+            $query->orWhere(function (Builder $query) use ($keys, $primaryKeyCount) {
+                for ($i = 0; $i < $primaryKeyCount; $i++) {
+                    $query->where($this->qualifyColumn($this->primaryKeys[$i]), $keys[$i]);
+                }
+            });
+        }
+
+        return $query;
     }
 
     public function getMacros()
