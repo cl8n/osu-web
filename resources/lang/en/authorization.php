@@ -17,6 +17,7 @@ return [
             'has_reply' => 'Can not delete discussion with replies',
         ],
         'nominate' => [
+            'discussion_locked' => "Can't nominate beatmap with locked discussions.",
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
             'incorrect_state' => 'Error performing that action, try refreshing the page.',
             'owner' => "Can't nominate own beatmap.",

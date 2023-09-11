@@ -654,6 +654,10 @@ class OsuAuthorize
             return $prefix.'incorrect_state';
         }
 
+        if ($beatmapset->discussion_locked) {
+            return $prefix.'discussion_locked';
+        }
+
         $userId = $user->getKey();
         if ($userId === $beatmapset->user_id) {
             return $prefix.'owner';
