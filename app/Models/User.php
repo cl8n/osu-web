@@ -1525,6 +1525,18 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->default();
     }
 
+    public function nonMutualFollowers(): Builder
+    {
+        $userIds = $this
+            ->hasMany(UserRelation::class, 'zebra_id')
+            ->where('friend', true)
+            ->withMutual()
+            ->where('mutual', false)
+            ->pluck('user_id');
+
+        return User::whereKeyIn($userIds)->default();
+    }
+
     public function channels()
     {
         return $this->hasManyThrough(

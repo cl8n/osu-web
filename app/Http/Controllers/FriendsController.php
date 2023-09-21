@@ -11,6 +11,7 @@ use App\Models\UserRelation;
 use App\Transformers\UserCompactTransformer;
 use Auth;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 
 class FriendsController extends Controller
 {
@@ -30,29 +31,14 @@ class FriendsController extends Controller
         parent::__construct();
     }
 
-    public function index()
+    public function indexFriends()
     {
-        $currentUser = auth()->user();
-        $currentMode = default_mode();
+        return $this->index(auth()->user()->friends());
+    }
 
-        $friends = $currentUser
-            ->friends()
-            ->with('statistics'.studly_case($currentMode))
-            ->eagerloadForListing()
-            ->orderBy('username', 'asc')
-            ->get();
-
-        $usersJson = json_collection(
-            $friends,
-            (new UserCompactTransformer())->setMode($currentMode),
-            UserCompactTransformer::LIST_INCLUDES
-        );
-
-        if (is_api_request()) {
-            return $usersJson;
-        }
-
-        return ext_view('friends.index', compact('usersJson'));
+    public function indexFollowers()
+    {
+        return $this->index(auth()->user()->nonMutualFollowers())
     }
 
     public function store()
@@ -135,5 +121,26 @@ class FriendsController extends Controller
             Auth::user()->relations()->friends()->withMutual()->get(),
             'UserRelation'
         );
+    }
+
+    private function index(Builder $usersQuery)
+    {
+        $currentMode = default_mode();
+
+        $friends = $usersQuery
+            ->with('statistics'.studly_case($currentMode))
+            ->eagerloadForListing()
+            ->orderBy('username', 'asc')
+            ->get();
+
+        $usersJson = json_collection(
+            $friends,
+            (new UserCompactTransformer())->setMode($currentMode),
+            UserCompactTransformer::LIST_INCLUDES,
+        );
+
+        return is_json_request()
+            ? $usersJson
+            : ext_view('friends.index', compact('usersJson'));
     }
 }
