@@ -769,6 +769,16 @@ function ext_view($view, $data = null, $type = null, $status = null)
     );
 }
 
+function react_view(string $component, ?array $json = null): Illuminate\Http\Response
+{
+    return response()->view(
+        'react_component',
+        compact('component', 'json'),
+        200,
+        ['Content-Type' => 'text/html'],
+    );
+}
+
 function from_app_url()
 {
     // Add trailing slash so people can't just use https://osu.web.domain.com
