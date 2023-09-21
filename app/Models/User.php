@@ -1985,6 +1985,19 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         ]);
     }
 
+    public function scopeWithKudosuRank(Builder $query): void
+    {
+        $query->selectRaw('RANK() OVER(ORDER BY `osu_kudostotal` DESC) AS `kudosu_rank`');
+    }
+
+    public function getKudosuRank(): int
+    {
+        return static
+            ::withKudosuRank()
+            ->find($this->getKey())
+            ->getRawAttribute('kudosu_rank');
+    }
+
     public function checkPassword($password)
     {
         return Hash::check($password, $this->getAuthPassword());

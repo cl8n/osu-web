@@ -245,6 +245,8 @@ class RankingController extends Controller
         $page = min(get_int(request('page')) ?? 1, $maxPage);
 
         $scores = User::default()
+            ->select('*')
+            ->withKudosuRank()
             ->orderBy('osu_kudostotal', 'desc')
             ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
 
