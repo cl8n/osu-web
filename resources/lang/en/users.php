@@ -185,6 +185,11 @@ return [
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 
+        'changelog_entry_count' => [
+            'count' => ':count_delimited change|:count_delimited changes',
+            'with_github' => 'Contributed :count (:link)',
+            'without_github' => 'Contributed :count',
+        ],
         'comments_count' => [
             '_' => 'Posted :link',
             'count' => ':count_delimited comment|:count_delimited comments',

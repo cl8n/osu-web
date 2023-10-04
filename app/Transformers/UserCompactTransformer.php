@@ -34,6 +34,7 @@ class UserCompactTransformer extends TransformerAbstract
     const PROFILE_HEADER_INCLUDES = [
         'active_tournament_banner',
         'badges',
+        'changelog_entry_count',
         'comments_count',
         'follower_count',
         'groups',
@@ -50,6 +51,7 @@ class UserCompactTransformer extends TransformerAbstract
         'badges',
         'beatmap_playcounts_count',
         'blocks',
+        'changelog_entry_count',
         'comments_count',
         'country',
         'cover',
@@ -173,6 +175,11 @@ class UserCompactTransformer extends TransformerAbstract
             $user->relations()->blocks()->get(),
             new UserRelationTransformer()
         );
+    }
+
+    public function includeChangelogEntryCount(User $user): ResourceInterface
+    {
+        return $this->primitive($user->changelogEntryCount());
     }
 
     public function includeCommentsCount(User $user)

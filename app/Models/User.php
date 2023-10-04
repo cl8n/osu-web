@@ -1671,6 +1671,15 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->blocks->pluck('user_id');
     }
 
+    /**
+     * Get the count of the user's current and legacy changelog entries.
+     */
+    public function changelogEntryCount(): int
+    {
+        return $this->githubUser()->changelogEntries()->count()
+            + $this->changelogs()->count();
+    }
+
     public function userGroupsForBadges()
     {
         return $this->memoize(__FUNCTION__, function () {

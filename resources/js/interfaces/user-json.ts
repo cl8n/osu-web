@@ -23,6 +23,7 @@ interface UserJsonAvailableIncludes {
   badges: UserBadgeJson[];
   beatmap_playcounts_count: number;
   blocks: UserRelationJson[];
+  changelog_entry_count: number;
   comments_count: number;
   country: CountryJson | null;
   cover: UserCoverJson;
@@ -87,6 +88,7 @@ interface UserJsonDefaultAttributes {
 export type ProfileHeaderIncludes =
   'active_tournament_banner'
   | 'badges'
+  | 'changelog_entry_count'
   | 'comments_count'
   | 'follower_count'
   | 'groups'

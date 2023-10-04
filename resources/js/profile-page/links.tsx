@@ -14,7 +14,7 @@ import { classWithModifiers } from 'utils/css';
 import { trans, transChoice } from 'utils/lang';
 
 // these are ordered in the order they appear in.
-const textKeys = ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count'] as const;
+const textKeys = ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count', 'changelog_entry_count'] as const;
 type TextKey = (typeof textKeys)[number];
 
 const bioKeys = ['location', 'interests', 'occupation'] as const;
@@ -66,6 +66,29 @@ const linkMapping: Record<LinkKey, (user: UserExtendedJson) => LinkProps> = {
 };
 
 const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithComponentProps> = {
+  changelog_entry_count: (user: UserExtendedJson) => {
+    const count = transChoice('users.show.changelog_entry_count.count', user.changelog_entry_count ?? 0);
+    const mappings: StringWithComponentProps['mappings'] = {
+      count: <span className='profile-links__value'>{count}</span>,
+    };
+
+    if (user.github_user == null)
+
+    return {
+      mappings: {
+        count: <span className='profile-links__value'>{count}</span>,
+        link: (
+          <a
+            className={classWithModifiers('profile-links__value', 'link')}
+            href={user.github_user.github_url}
+          >
+            {user.github_user.github_username}
+          </a>
+        ),
+      },
+      pattern: osu.trans('users.show.changelog_entry_count.with_github'),
+    };
+  },
   comments_count: (user: UserExtendedJson) => {
     const count = transChoice('users.show.comments_count.count', user.comments_count ?? 0);
     const url = route('comments.index', { user_id: user.id });
