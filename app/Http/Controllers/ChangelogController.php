@@ -438,13 +438,24 @@ class ChangelogController extends Controller
             ->sortByDesc(function ($label) {
                 $parts = explode('.', $label);
 
-                if (count($parts) >= 1 && strlen($parts[0]) >= 8) {
-                    $date = substr($parts[0], 0, 8);
-                } elseif (count($parts) >= 2 && strlen($parts[0]) === 4 && strlen($parts[1]) >= 3 && strlen($parts[1]) <= 4) {
-                    $date = $parts[0].str_pad($parts[1], 4, '0', STR_PAD_LEFT);
+                // Stable, Beta, Cutting Edge (e.g. 20230814.2, 20231219)
+                if (count($parts) <= 2 && strlen($parts[0]) === 8) {
+                    return $label;
                 }
 
-                return $date ?? null;
+                // Lazer, Web (e.g. 2023.924.0, 2023.1218.1)
+                if (
+                    count($parts) === 3 &&
+                    strlen($parts[0]) === 4 &&
+                    strlen($parts[1]) >= 3 &&
+                    strlen($parts[1]) <= 4
+                ) {
+                    $parts[1] = str_pad($parts[1], 4, '0', STR_PAD_LEFT);
+
+                    return implode('', $parts);
+                }
+
+                return null;
             })->values();
     }
 }
