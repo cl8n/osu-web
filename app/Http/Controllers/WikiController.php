@@ -49,10 +49,24 @@ class WikiController extends Controller
             return ujs_redirect(wiki_image_url(concat_path([$prependPath, $path])));
         }
 
-        // if invalid locale, assume locale to be part of path and
-        // actual locale to be either user locale or passed as parameter
+        // If the locale in the path is invalid, assume that it's part of the
+        // article path
         if ($cleanLocale === null) {
-            return ujs_redirect(wiki_url(concat_path([$locale, $path]), $this->locale()));
+            $path = concat_path([$locale, $path]);
+
+            // Old links may have the locale written before the article path,
+            // with a separating colon. Example: ZH:Ranking_Criteria
+            if (preg_match('#^([a-z]{2}):(.+)$#i', $path, $matches)) {
+                $oldWikiLocale = LocaleMeta::sanitizeCodeFromOldWiki($matches[1]);
+
+                if ($oldWikiLocale !== null) {
+                    return ujs_redirect(wiki_url($matches[2], $oldWikiLocale));
+                }
+            }
+
+            // Otherwise, redirect to the new path, with the locale specified
+            // by the query parameter or user preferences
+            return ujs_redirect(wiki_url($path, $this->locale()));
         }
 
         // in case locale is passed as query parameter (legacy url inside the page)

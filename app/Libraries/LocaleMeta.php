@@ -210,6 +210,21 @@ class LocaleMeta
         return static::isValid($ret) ? $ret : null;
     }
 
+    public static function sanitizeCodeFromOldWiki(string $locale): ?string
+    {
+        // The old wiki used an alternate naming system for locale codes
+        static $oldWikiLocaleMap = [
+            'hk' => 'zh-hk',
+            'jp' => 'ja',
+            'ph' => 'fil',
+            'pt' => 'pt-br',
+        ];
+
+        return static::sanitizeCode(
+            $oldWikiLocaleMap[strtolower($locale)] ?? $locale
+        );
+    }
+
     public function __construct($locale)
     {
         $this->locale = $locale;
