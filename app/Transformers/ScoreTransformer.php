@@ -137,8 +137,6 @@ class ScoreTransformer extends TransformerAbstract
             // TODO: remove this redundant field sometime after 2024-02
             'replay' => $hasReplay,
         ];
-
-        return $ret;
     }
 
     public function transformLegacy(LegacyMatch\Score|ScoreModel|SoloScore $score)
